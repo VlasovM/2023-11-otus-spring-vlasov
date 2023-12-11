@@ -1,6 +1,0 @@
-package ru.javlasov.firstHomework.parsingCSV.domain;
-
-import java.util.List;
-
-public record Question(String text, List<Answer> answers) {
-}

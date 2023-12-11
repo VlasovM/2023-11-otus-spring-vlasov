@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/2023-11-otus-spring-vlasov.iml" filepath="$PROJECT_DIR$/.idea/2023-11-otus-spring-vlasov.iml" />
+      <module fileurl="file://$PROJECT_DIR$/firstHomework/firstHomework.iml" filepath="$PROJECT_DIR$/firstHomework/firstHomework.iml" />
+    </modules>
+  </component>
+</project>
