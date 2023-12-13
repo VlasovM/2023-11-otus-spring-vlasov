@@ -23,7 +23,7 @@ public class CsvQuestionDao implements QuestionDao {
             if (inputStream != null) {
                 return processCsvFile(inputStream);
             }
-            throw new QuestionReadException("Не удалось прочитать CSV файл", new RuntimeException());
+            throw new QuestionReadException("Не удалось прочитать CSV файл");
         } catch (Exception exception) {
             throw new QuestionReadException(exception.getMessage(), exception);
         }

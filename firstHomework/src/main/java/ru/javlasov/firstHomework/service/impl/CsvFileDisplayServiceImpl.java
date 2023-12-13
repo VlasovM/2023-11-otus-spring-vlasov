@@ -20,7 +20,7 @@ public class CsvFileDisplayServiceImpl implements CsvFileDisplayService {
             ioService.printLine("\n" + element.text());
             int numberAnswer = 1;
             for (Answer answer : element.answers()) {
-                System.out.println(numberAnswer + ". " + answer.text() + " | " + answer.isCorrect());
+                ioService.printFormattedLine("%d, %s - %s", numberAnswer, answer.text(), answer.isCorrect());
                 numberAnswer++;
             }
         });
