@@ -1,0 +1,6 @@
+# Добавить сюда своих вопросов. Эту строку надо пропустить при настройке CsvToBean (withSkipLines)
+Who killed Mark?;Oxxxymiron%true|Slava KPSS%false|Johnyboy%false
+Who lives well in Russia?;Russian%true|Americans%false|Chinese%false
+When the dollar exchange rate will be 30?;Never%true|In 2024%false|When pigs fly%false
+Will this homework be accepted from me?;Yes%true|No%false
+Which programming language is the best?;Java/Kotlin%true|C++%false|Python%false
