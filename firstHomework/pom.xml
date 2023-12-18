@@ -21,8 +21,6 @@
 		<checkstyle.config.url>
 			https://raw.githubusercontent.com/OtusTeam/Spring/master/checkstyle.xml
 		</checkstyle.config.url>
-		<mockito-core.version>4.11.0</mockito-core.version>
-		<junit-jupiter-api.version>5.10.0</junit-jupiter-api.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -42,13 +40,11 @@
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
-			<version>${mockito-core.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>${junit-jupiter-api.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

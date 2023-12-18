@@ -8,7 +8,7 @@ import ru.javlasov.firstHomework.config.FileNameProvider;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-@DisplayName("Тест Dao")
+@DisplayName("TestingDaoClass")
 class CsvQuestionDaoTest {
 
     private static final String CSV_QUESTIONS_FILE_NAME = "questionsTest.csv";
@@ -17,7 +17,7 @@ class CsvQuestionDaoTest {
     private final CsvQuestionDao underTestService = new CsvQuestionDao(mockFileNameProvider);
 
     @Test
-    @DisplayName("Тест проверки количества вопросов, пришедшие с CSV")
+    @DisplayName("Test for answers count from CSV file")
     void testCountAnswersFromCSV() {
         // given
         var expectedSizeOfAnswers = 5;
@@ -32,7 +32,7 @@ class CsvQuestionDaoTest {
     }
 
     @Test
-    @DisplayName("Получить первый вопрос с CSV и сравнить с ожиданием")
+    @DisplayName("Get first question from csv file and equal it for expected")
     void testFirstQuestionFromCSVFile() {
         //given
         var expectedFirstQuestion = "Who killed Mark?";
