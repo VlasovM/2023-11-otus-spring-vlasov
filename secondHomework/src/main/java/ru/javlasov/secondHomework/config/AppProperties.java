@@ -2,10 +2,10 @@ package ru.javlasov.secondHomework.config;
 
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 @Setter
-@Configuration
+@Component
 public class AppProperties implements TestConfig, FileNameProvider {
 
     @Value("${test.rightAnswersCountToPass}")
