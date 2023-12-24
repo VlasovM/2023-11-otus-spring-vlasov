@@ -3,7 +3,7 @@ package ru.javlasov.thirdHomework.service;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import ru.javlasov.thirdHomework.config.LocalConfig;
+import ru.javlasov.thirdHomework.config.AppProperties;
 import ru.javlasov.thirdHomework.dao.CsvQuestionDao;
 import ru.javlasov.thirdHomework.domain.Answer;
 import ru.javlasov.thirdHomework.domain.Question;
@@ -12,7 +12,6 @@ import ru.javlasov.thirdHomework.service.impl.TestServiceImpl;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -22,10 +21,10 @@ import static org.mockito.Mockito.when;
 @DisplayName("Testing service class")
 class TestServiceImplTest {
 
-    IOService mockIoService = Mockito.mock(IOService.class);
+    LocalizedIOService mockIoService = Mockito.mock(LocalizedIOService.class);
     CsvQuestionDao mockCsvQuestionDao = Mockito.mock(CsvQuestionDao.class);
-    LocalConfig mockLocalConfig = Mockito.mock(LocalConfig.class);
-    TestServiceImpl underTestService = new TestServiceImpl(mockIoService, mockCsvQuestionDao, mockLocalConfig);
+    AppProperties mockAppProperties = Mockito.mock(AppProperties.class);
+    TestServiceImpl underTestService = new TestServiceImpl(mockIoService, mockCsvQuestionDao, mockAppProperties);
 
     @Test
     @DisplayName("All correct answers")
@@ -34,12 +33,11 @@ class TestServiceImplTest {
         var expectedCorrectAnswers = 2;
 
         //when
-        when(mockCsvQuestionDao.findAll(Locale.ENGLISH)).thenReturn(getMockQuestions());
-        when(mockLocalConfig.getMessage("incorrectInput", Locale.ENGLISH)).thenReturn("Error input");
+        when(mockCsvQuestionDao.findAll()).thenReturn(getMockQuestions());
         when(mockIoService.readIntForRange(anyInt(), anyInt(), anyString())).thenReturn(1);
 
         //then
-        var testResult = underTestService.executeTestFor(getMockStudent(), Locale.ENGLISH);
+        var testResult = underTestService.executeTestFor(getMockStudent());
         var actualCorrectAnswers = testResult.getRightAnswersCount();
 
         assertEquals(expectedCorrectAnswers, actualCorrectAnswers);

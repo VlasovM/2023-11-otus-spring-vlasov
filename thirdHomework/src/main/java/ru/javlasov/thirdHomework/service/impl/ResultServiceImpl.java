@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.javlasov.thirdHomework.config.AppProperties;
 import ru.javlasov.thirdHomework.domain.TestResult;
-import ru.javlasov.thirdHomework.service.IOService;
+import ru.javlasov.thirdHomework.service.LocalizedIOService;
 import ru.javlasov.thirdHomework.service.ResultService;
-
-import java.util.Locale;
 
 @Service
 @RequiredArgsConstructor
@@ -15,23 +13,23 @@ public class ResultServiceImpl implements ResultService {
 
     private final AppProperties appProperties;
 
-    private final IOService ioService;
+    private final LocalizedIOService ioService;
 
     @Override
-    public void showResult(TestResult testResult, Locale locale) {
+    public void showResult(TestResult testResult) {
         ioService.printLine("");
-        ioService.printLine(appProperties.getMessage("showResult.testResult", locale));
-        ioService.printFormattedLine(appProperties.getMessage("showResult.student", locale),
+        ioService.printFormattedLineLocalized("showResult.testResult");
+        ioService.printFormattedLineLocalized("showResult.student",
                 testResult.getStudent().getFullName());
-        ioService.printFormattedLine(appProperties.getMessage("showResult.answered.questions", locale),
+        ioService.printFormattedLineLocalized("showResult.answered.questions",
                 testResult.getAnsweredQuestions().size());
-        ioService.printFormattedLine(appProperties.getMessage("showResult.right.answers.count", locale),
+        ioService.printFormattedLineLocalized("showResult.right.answers.count",
                 testResult.getRightAnswersCount());
         if (testResult.getRightAnswersCount() >= appProperties.getRightAnswersCountToPass()) {
-            ioService.printLine(appProperties.getMessage("showResult.succeed", locale));
+            ioService.printFormattedLineLocalized("showResult.succeed");
             return;
         }
-        ioService.printLine(appProperties.getMessage("showResult.fail", locale));
+        ioService.printLine("showResult.fail");
     }
 
 }

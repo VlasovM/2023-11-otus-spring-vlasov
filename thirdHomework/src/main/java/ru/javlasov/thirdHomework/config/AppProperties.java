@@ -3,32 +3,24 @@ package ru.javlasov.thirdHomework.config;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
+import java.util.Map;
 
 @Setter
 @Getter
 @Component
 @RequiredArgsConstructor
-public class AppProperties implements TestConfig, FileNameProvider, LocalConfig {
+@ConfigurationProperties(prefix = "test")
+public class AppProperties implements TestConfig, FileNameProvider, LocateConfig {
 
-    @Value("${test.rightAnswersCountToPass}")
     private Integer rightAnswersCountToPass;
 
-    @Value("${test.fileNameRU}")
-    private String fileNameRU;
+    private Map<String, String> fileNameByLocaleTag;
 
-    @Value("${test.fileNameEN}")
-    private String fileNameEN;
-
-    @Value("${spring.messages.encoding}")
-    private String encoding;
-
-    @Value("${spring.messages.basename}")
-    private String baseName;
+    private Locale locale;
 
     @Override
     public int getRightAnswersCountToPass() {
@@ -36,29 +28,14 @@ public class AppProperties implements TestConfig, FileNameProvider, LocalConfig 
     }
 
     @Override
-    public String getCSVFileName(Locale locale) {
-        if (locale.equals(Locale.ENGLISH)) {
-            return fileNameEN;
-        }
-        return fileNameRU;
+    public String getTestFileName() {
+        return fileNameByLocaleTag.get(locale.toLanguageTag());
     }
 
-    @Override
-    public String getMessage(String code, Object[] args, Locale locale) {
-        ReloadableResourceBundleMessageSource messageSource
-                = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename(baseName);
-        messageSource.setDefaultEncoding(encoding);
-        return messageSource.getMessage(code, args, locale);
-    }
 
     @Override
-    public String getMessage(String code, Locale locale) {
-        ReloadableResourceBundleMessageSource messageSource
-                = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename(baseName);
-        messageSource.setDefaultEncoding(encoding);
-        return messageSource.getMessage(code, null, locale);
+    public Locale getLocale() {
+        return locale;
     }
 
 }

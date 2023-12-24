@@ -3,31 +3,32 @@ package ru.javlasov.thirdHomework.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
-import ru.javlasov.thirdHomework.config.LocalConfig;
+import ru.javlasov.thirdHomework.config.AppProperties;
 import ru.javlasov.thirdHomework.dao.QuestionDao;
 import ru.javlasov.thirdHomework.domain.Answer;
 import ru.javlasov.thirdHomework.domain.Student;
 import ru.javlasov.thirdHomework.domain.TestResult;
-import ru.javlasov.thirdHomework.service.IOService;
+import ru.javlasov.thirdHomework.service.LocalizedIOService;
 import ru.javlasov.thirdHomework.service.TestService;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 @RequiredArgsConstructor
 @Service
 public class TestServiceImpl implements TestService {
 
-    private final IOService ioService;
+    private final LocalizedIOService ioService;
 
     private final QuestionDao questionDao;
 
-    private final LocalConfig localConfig;
+    private final AppProperties appProperties;
 
     @Override
-    public TestResult executeTestFor(Student student, Locale locale) {
+    public TestResult executeTestFor(Student student) {
         ioService.printLine("");
-        ioService.printFormattedLine(localConfig.getMessage("answerQuestion", locale));
-        var questions = questionDao.findAll(locale);
+        ioService.printFormattedLineLocalized(("answerQuestion"));
+        var questions = questionDao.findAll();
         var testResult = new TestResult(student);
         for (var question : questions) {
             ioService.printFormattedLine("%n %s", question.text());
@@ -37,7 +38,7 @@ public class TestServiceImpl implements TestService {
                 numberAnswer++;
             }
             var studentAnswer = ioService.readIntForRange(1, question.answers().size(),
-                    localConfig.getMessage("incorrectInput", locale));
+                    "incorrectInput");
             var isAnswerValid = question.answers().get(studentAnswer - 1).isCorrect();
             testResult.applyAnswer(question, isAnswerValid);
         }
@@ -45,22 +46,25 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public Locale chooseLanguage() {
+    public void chooseLanguage() {
+        var fileNameByLocaleTagMap = new HashMap<String, String>();
         ioService.printFormattedLine("Please choose your language: EN or RU");
-        Locale locale;
         while (true) {
             var language = ioService.readString();
             if (language.equals("EN")) {
-                locale = Locale.ENGLISH;
+                fileNameByLocaleTagMap.put(Locale.ENGLISH.toLanguageTag(), "questionsEN.csv");
+                appProperties.setLocale(Locale.ENGLISH);
+                appProperties.setFileNameByLocaleTag(fileNameByLocaleTagMap);
                 break;
             } else if (language.equals("RU")) {
-                locale = LocaleContextHolder.getLocale();
+                fileNameByLocaleTagMap.put(LocaleContextHolder.getLocale().toLanguageTag(), "questionsRU.csv");
+                appProperties.setLocale(LocaleContextHolder.getLocale());
+                appProperties.setFileNameByLocaleTag(fileNameByLocaleTagMap);
                 break;
             } else {
                 ioService.printLine("Incorrect language. Please type EN or RU");
             }
         }
-        return locale;
     }
 
 }

@@ -7,8 +7,6 @@ import ru.javlasov.thirdHomework.service.RunnerService;
 import ru.javlasov.thirdHomework.service.StudentService;
 import ru.javlasov.thirdHomework.service.TestService;
 
-import java.util.Locale;
-
 @Service
 @RequiredArgsConstructor
 public class RunnerServiceImpl implements RunnerService {
@@ -21,10 +19,10 @@ public class RunnerServiceImpl implements RunnerService {
 
     @Override
     public void run() {
-        Locale locale = testService.chooseLanguage();
-        var student = studentService.determineCurrentStudent(locale);
-        var testResult = testService.executeTestFor(student, locale);
-        resultService.showResult(testResult, locale);
+        testService.chooseLanguage();
+        var student = studentService.determineCurrentStudent();
+        var testResult = testService.executeTestFor(student);
+        resultService.showResult(testResult);
     }
 
 }

@@ -4,7 +4,6 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.javlasov.thirdHomework.config.FileNameProvider;
-import ru.javlasov.thirdHomework.config.LocalConfig;
 import ru.javlasov.thirdHomework.dao.dto.QuestionDto;
 import ru.javlasov.thirdHomework.domain.Question;
 import ru.javlasov.thirdHomework.exceptions.QuestionReadException;
@@ -12,7 +11,6 @@ import ru.javlasov.thirdHomework.exceptions.QuestionReadException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -21,16 +19,14 @@ public class CsvQuestionDao implements QuestionDao {
 
     private final FileNameProvider applicationProperties;
 
-    private final LocalConfig localConfig;
-
     @Override
-    public List<Question> findAll(Locale locale) {
+    public List<Question> findAll() {
         try (var inputStream = getClass().getClassLoader()
-                .getResourceAsStream(applicationProperties.getCSVFileName(locale))) {
+                .getResourceAsStream(applicationProperties.getTestFileName())) {
             if (inputStream != null) {
                 return processCsvFile(inputStream);
             }
-            throw new QuestionReadException(localConfig.getMessage("error.read.file", locale));
+            throw new QuestionReadException("error.read.file");
         } catch (Exception exception) {
             throw new QuestionReadException(exception.getMessage(), exception);
         }
