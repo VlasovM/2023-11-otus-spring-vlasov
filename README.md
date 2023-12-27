@@ -7,7 +7,7 @@
 ### Историй слияний в ветку master:
 * **15.12.2023 [feature/firstHomework]**: закончена домашняя работа №1 по блоку **"Введение в Spring Framework"**
 * **20.12.2023 [feature/secondHomework]**: закончена домашняя работа №2 по блоку **"Конфигурирование Spring-приложений"**
-* **20.12.2023 [feature/secondHomework]**: закончена домашняя работа №3 по блоку **"Spring-boot"**
+* **27.12.2023 [feature/secondHomework]**: закончена домашняя работа №3 по блоку **"Spring-boot"**
 
 ### Студент: 
 Власов Максим Александрович | https://t.me/JaVlasov
@@ -22,7 +22,7 @@ Each project folder has its own **ReadMe** file, which contains a description of
 ### History pull request to branch master:
 * **15.12.2023 [feature/firstHomework]**: finished homework №1 by module **"Introduction to the Spring Framework"**
 * **20.12.2023 [feature/secondHomework]**: finished homework №2 by module **"Configuring Spring applications"**
-* **20.12.2023 [feature/secondHomework]**: finished homework №3 by module **"Spring-boot"**
+* **27.12.2023 [feature/secondHomework]**: finished homework №3 by module **"Spring-boot"**
 
 ### Student: 
 Vlasov Maxim Aleksandrovich | https://t.me/JaVlasov
