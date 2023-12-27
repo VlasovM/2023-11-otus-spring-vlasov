@@ -1,0 +1,6 @@
+# Добавить сюда своих вопросов. Эту строку надо пропустить при настройке CsvToBean (withSkipLines)
+What is the number of The Elder Scrolls Skyrim?;V%true|IV%false|VI%false
+Between whom and whom is there a civil war in Skyrim?;Dovakin vs Empire%false|Empire vs Stormcloak%true|Dovakin vs Empire%false
+Who is Dovakin?;Is Dragonborn%true|The legacy of the Emperor Dova%false|Our main opponent in the game%false
+Why did dragons appear in Skyrim?;They were hiding%false|Alduin resurrected them%true|Dovakin resurrected them%false
+Who is Skyrim for?;For Nords%true|For Dovakin%false|For everyone%false
