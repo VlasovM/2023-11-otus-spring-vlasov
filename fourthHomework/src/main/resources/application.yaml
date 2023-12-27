@@ -1,0 +1,11 @@
+test:
+  rightAnswersCountToPass: 3
+  fileNameRU: questionsRU.csv
+  fileNameEN: questionsEN.csv
+
+spring:
+  messages:
+    basename: "classpath:appmessages"
+    encoding: "UTF-8"
+  banner:
+    location: classpath:banner.txt

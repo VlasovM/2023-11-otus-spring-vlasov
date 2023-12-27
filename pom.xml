@@ -10,6 +10,7 @@
         <module>firstHomework</module>
         <module>secondHomework</module>
         <module>thirdHomework</module>
+        <module>fourthHomework</module>
     </modules>
     <properties>
         <java.version>17</java.version>
