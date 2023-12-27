@@ -20,7 +20,7 @@ public class LocalizedMessagesServiceImpl implements LocalizedMessagesService {
 
     private String baseName;
 
-    private final LocateConfig localeConfig;
+    private LocateConfig localeConfig;
 
     @Override
     public String getMessage(String code, Object ...args) {
