@@ -45,11 +45,15 @@ public class RunnerServiceImpl implements RunnerService {
     }
 
     private Availability isCompletedTest() {
-        return testResult == null ? Availability.unavailable("At second complete the test") : Availability.available();
+        return testResult == null
+                ? Availability.unavailable("At second complete the test")
+                : Availability.available();
     }
 
     private Availability isChooseLanguage() {
-        return appProperties.getLocale() == null ? Availability.unavailable("At first choose the language") : Availability.available();
+        return appProperties.getLocale() == null
+                ? Availability.unavailable("At first choose the language")
+                : Availability.available();
     }
 
 }
