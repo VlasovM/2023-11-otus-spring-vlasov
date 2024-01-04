@@ -1,0 +1,5 @@
+${AnsiBackground.RED}  ___         _   _      _
+${AnsiBackground.BLUE} / __|  ___  | | (_)  __| |
+${AnsiBackground.YELLOW} \__ \ / _ \ | | | | / _` |
+${AnsiBackground.GREEN} |___/ \___/ |_| |_| \__,_|
+${AnsiBackground.DEFAULT}
