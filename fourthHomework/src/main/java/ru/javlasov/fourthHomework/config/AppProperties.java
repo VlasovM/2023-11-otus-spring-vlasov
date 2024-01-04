@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 @ConfigurationProperties(prefix = "test")
-public class AppProperties implements TestConfig, FileNameProvider, LocateConfig {
+public class AppProperties implements TestConfig, FileNameProvider, LocaleConfig {
 
     private Integer rightAnswersCountToPass;
 

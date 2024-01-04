@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
-import ru.javlasov.fourthHomework.config.LocateConfig;
+import ru.javlasov.fourthHomework.config.LocaleConfig;
 import ru.javlasov.fourthHomework.service.LocalizedMessagesService;
 
 @RequiredArgsConstructor
@@ -20,7 +20,7 @@ public class LocalizedMessagesServiceImpl implements LocalizedMessagesService {
 
     private String baseName;
 
-    private final LocateConfig localeConfig;
+    private final LocaleConfig localeConfig;
 
     @Override
     public String getMessage(String code, Object ...args) {

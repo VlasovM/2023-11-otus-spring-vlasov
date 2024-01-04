@@ -2,7 +2,7 @@ package ru.javlasov.fourthHomework.config;
 
 import java.util.Locale;
 
-public interface LocateConfig {
+public interface LocaleConfig {
 
     Locale getLocale();
 

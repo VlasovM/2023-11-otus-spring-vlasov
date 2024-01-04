@@ -7,6 +7,4 @@ public interface TestService {
 
     TestResult executeTestFor(Student student);
 
-    void chooseLanguage();
-
 }
