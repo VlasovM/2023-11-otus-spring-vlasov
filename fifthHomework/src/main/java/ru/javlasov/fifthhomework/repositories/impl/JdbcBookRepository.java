@@ -1,7 +1,6 @@
 package ru.javlasov.fifthhomework.repositories.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
@@ -29,18 +28,17 @@ public class JdbcBookRepository implements BookRepository {
     @Override
     public Optional<Book> findById(long id) {
         Map<String, Object> params = Collections.singletonMap("id", id);
-        try {
-            var result = jdbcOperations.queryForObject("""
+        var result = jdbcOperations.query("""
                 SELECT t1.id as id, t1.title as title, t2.id as book_id, t2.full_name as book_name, 
                     t3.id as genre_id, t3.name as genre_name FROM BOOKS t1
                     JOIN AUTHORS t2 ON t1.author = t2.id
                     JOIN GENRES t3 ON t1.genre = t3.id 
                     WHERE t1.id = :id
                 """, params, new BookRowMapper());
-            return Optional.ofNullable(result);
-        } catch (DataAccessException dataAccessException) {
-            throw new EntityNotFoundException("Cannot find Book with id %d".formatted(id));
+        if (result.isEmpty()) {
+            return Optional.empty();
         }
+        return result.stream().findFirst();
     }
 
     @Override

@@ -1,11 +1,9 @@
 package ru.javlasov.fifthhomework.repositories.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
-import ru.javlasov.fifthhomework.exceptions.EntityNotFoundException;
 import ru.javlasov.fifthhomework.models.Author;
 import ru.javlasov.fifthhomework.repositories.AuthorRepository;
 
@@ -30,14 +28,12 @@ public class JdbcAuthorRepository implements AuthorRepository {
     @Override
     public Optional<Author> findById(long id) {
         Map<String, Object> params = Collections.singletonMap("id", id);
-        try {
-            var result = jdbcOperations.queryForObject("SELECT id, full_name FROM AUTHORS WHERE id = :id",
-                    params, new AuthorRowMapper());
-            return Optional.ofNullable(result);
-        } catch (DataAccessException dataAccessException) {
-            throw new EntityNotFoundException("Not found author with id = %d".formatted(id));
+        var result = jdbcOperations.query("SELECT id, full_name FROM AUTHORS WHERE id = :id",
+                params, new AuthorRowMapper());
+        if (result.isEmpty()) {
+            return Optional.empty();
         }
-
+        return result.stream().findFirst();
     }
 
     private static class AuthorRowMapper implements RowMapper<Author> {

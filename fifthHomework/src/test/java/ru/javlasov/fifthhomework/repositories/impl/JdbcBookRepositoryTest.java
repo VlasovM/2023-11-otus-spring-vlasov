@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
-import ru.javlasov.fifthhomework.exceptions.EntityNotFoundException;
 import ru.javlasov.fifthhomework.models.Author;
 import ru.javlasov.fifthhomework.models.Book;
 import ru.javlasov.fifthhomework.models.Genre;
@@ -16,7 +15,6 @@ import ru.javlasov.fifthhomework.models.Genre;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Репозиторий на основе Jdbc для работы с книгами")
 @JdbcTest
@@ -100,9 +98,7 @@ class JdbcBookRepositoryTest {
     void shouldDeleteBook() {
         assertThat(repositoryJdbc.findById(1L)).isPresent();
         repositoryJdbc.deleteById(1L);
-        assertThrows(EntityNotFoundException.class, () -> {
-            repositoryJdbc.findById(1L);
-        });
+        assertThat(repositoryJdbc.findById(1L)).isEmpty();
     }
 
     private static List<Author> getDbAuthors() {
