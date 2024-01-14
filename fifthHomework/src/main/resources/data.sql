@@ -1,28 +1,6 @@
-INSERT INTO AUTHORS (full_name)
-SELECT 'Nikolay Gogol'
-    WHERE
-NOT EXISTS (
-SELECT 1 FROM AUTHORS WHERE full_name = 'Nikolay Gogol');
+MERGE INTO AUTHORS KEY (id, full_name) VALUES (1, 'Nikolay Gogol'), (2, 'Fedor Dostoevsky');
 
-INSERT INTO AUTHORS (full_name)
-SELECT 'Fedor Dostoevsky' WHERE
-NOT EXISTS (
-SELECT 1 FROM AUTHORS WHERE full_name = 'Fedor Dostoevsky');
+MERGE INTO GENRES KEY (id, name) VALUES (1, 'Novel');
 
-INSERT INTO GENRES(name)
-SELECT 'Novel' WHERE
-NOT EXISTS (
-SELECT 1 FROM GENRES WHERE name = 'Novel');
-
-
-INSERT INTO BOOKS(title, author, genre)
-SELECT 'Dead souls', 1, 1 WHERE
-NOT EXISTS (
-SELECT 1 FROM BOOKS WHERE title = 'Dead souls');
-
-INSERT INTO BOOKS(title, author, genre)
-SELECT 'Crime and punishment', 2, 1 WHERE
-NOT EXISTS (
-SELECT 1 FROM BOOKS WHERE title = 'Crime and punishment'
-);
+MERGE INTO BOOKS KEY (id, title) VALUES (1, 'Dead souls', 1, 1), (2, 'Crime and punishment', 2, 1);
 
