@@ -9,7 +9,7 @@ public interface CommentService {
 
     Optional<Comment> findById(long id);
 
-    Comment insert(String text, long bookId);
+    Comment create(String text, long bookId);
 
     Comment update(long id, String text, long bookId);
 

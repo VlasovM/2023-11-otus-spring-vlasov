@@ -1,6 +1,5 @@
 package ru.javlasov.sixthhomework.repositories.impl;
 
-import jakarta.persistence.EntityGraph;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +9,6 @@ import ru.javlasov.sixthhomework.repositories.CommentRepository;
 
 import java.util.List;
 import java.util.Optional;
-
-import static org.springframework.data.jpa.repository.EntityGraph.EntityGraphType.FETCH;
 
 @Repository
 @RequiredArgsConstructor
@@ -27,11 +24,8 @@ public class JpaCommentRepository implements CommentRepository {
 
     @Override
     public List<Comment> findAllCommentByBookId(long bookId) {
-        EntityGraph<?> entityGraph = entityManager.getEntityGraph("book-entity-graph");
-        var query = entityManager.createQuery("SELECT c FROM Comment c WHERE c.book.id = :id"
-                , Comment.class).setParameter("id", bookId);
-        query.setHint(FETCH.getKey(), entityGraph);
-        return query.getResultList();
+        return entityManager.createQuery("SELECT c FROM Comment c WHERE c.book.id = :id"
+                , Comment.class).setParameter("id", bookId).getResultList();
     }
 
     @Override

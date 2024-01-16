@@ -24,25 +24,31 @@ public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Book> findById(long id) {
         return bookRepository.findById(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
 
     @Override
     @Transactional
-    public Book insert(String title, long authorId, long genreId) {
+    public Book create(String title, long authorId, long genreId) {
         return save(0, title, authorId, genreId);
     }
 
     @Override
     @Transactional
     public Book update(long id, String title, long authorId, long genreId) {
-        return save(id, title, authorId, genreId);
+        var book = bookRepository.findById(id);
+        if (book.isPresent()) {
+            return save(id, title, authorId, genreId);
+        }
+        throw new EntityNotFoundException("Not found book with id = %d".formatted(id));
     }
 
     @Override
