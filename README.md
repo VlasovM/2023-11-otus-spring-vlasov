@@ -10,6 +10,7 @@
 * **27.12.2023 [feature/thirdHomework]**: закончена домашняя работа №3 по блоку **"Spring-boot"**
 * **04.01.2024 [feature/fourthHomework]**: закончена домашняя работа №4 по блоку **"Продвинутая конфигурация (часть 2) - Conditionals, Events, тестирование"**
 * **14.01.2024 [feature/fifthHomework]**: закончена домашняя работа №5 по блоку **DAO на Spring JDBC**
+* **19.01.2024 [feature/sixthHomework]**: закончена домашняя работа №6 по блоку **"JPQL, Spring ORM, DAO with Spring ORM + JPA"**
 
 ### Студент: 
 Власов Максим Александрович | https://t.me/JaVlasov
@@ -27,6 +28,7 @@ Each project folder has its own **ReadMe** file, which contains a description of
 * **27.12.2023 [feature/thirdHomework]**: finished homework №3 by module **"Spring-boot"**
 * **04.01.2024 [feature/fourthHomework]**: finished homework №4 by module **"Advanced Configuration (Part 2) - Conditionals, Events, Testing"**
 * **14.04.2024 [feature/fifthHomework]**: finished homework #5 by module **"DAO на Spring JDBC"**
+* **19.04.2024 [feature/fifthHomework]**: finished homework #6 by module **"JPQL, Spring ORM, DAO with Spring ORM + JPA"**
 
 ### Student: 
 Vlasov Maxim Aleksandrovich | https://t.me/JaVlasov
