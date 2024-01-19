@@ -1,4 +1,4 @@
-# DAO на Spring JDBC | DAO in Spring JDBC
+# JPQL, Spring ORM, DAO with Spring ORM + JPA
 [English version bellow](#English-version)
 ___
 # Навигация
