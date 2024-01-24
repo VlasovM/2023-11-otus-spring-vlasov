@@ -29,8 +29,8 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional
     public Comment create(String text, long bookId) {
-        var book = bookRepository.findById(bookId).orElseThrow(() ->
-                new EntityNotFoundException("Not found book with id = %d".formatted(bookId)));
+        var book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new EntityNotFoundException("Not found book with id = %d".formatted(bookId)));
         var comment = new Comment(text, book);
         return commentRepository.save(comment);
     }
@@ -38,8 +38,14 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional
     public Comment update(long id, String text, long bookId) {
-        var comment = commentRepository.findById(id).orElseThrow(() ->
-                new EntityNotFoundException("Comment with id = %d not found".formatted(id)));
+        var comment = commentRepository
+                .findById(id).orElseThrow(() ->
+                        new EntityNotFoundException("Comment with id = %d not found".formatted(id)));
+        if (comment.getBook().getId() != bookId) {
+            throw new EntityNotFoundException("Incorrect book id. Expected: %d, Actual: %d"
+                    .formatted(comment.getBook().getId(), bookId));
+        }
+        comment.setText(text);
         return commentRepository.save(comment);
     }
 

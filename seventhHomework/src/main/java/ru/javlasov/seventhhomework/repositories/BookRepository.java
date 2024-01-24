@@ -9,10 +9,11 @@ import java.util.Optional;
 
 public interface BookRepository extends CrudRepository<Book, Long> {
 
+    @EntityGraph(value = "author-genre-entity-graph")
     Optional<Book> findById(long id);
 
     @Override
-    @EntityGraph(attributePaths = {"genre", "author"})
+    @EntityGraph(value = "author-genre-entity-graph")
     List<Book> findAll();
 
     void deleteById(long id);
