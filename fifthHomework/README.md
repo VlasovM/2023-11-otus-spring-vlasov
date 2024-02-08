@@ -29,7 +29,7 @@ ___
 ## Покрытие тестами:
 Тестами покрыты методы репозиториев.
 
-[src -> test -> java -> ru -> javlasov -> fifthHomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/feature/fifthHomework/src/test/java/ru/javlasov/fifthHomework/repositories/impl)
+[src -> test -> java -> ru -> javlasov -> fifthHomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/fifthHomework/src/test/java/ru/javlasov/fifthhomework/repositories/impl)
 
 ## База данных
 В проекте используется веб-версия базы данных H2. Конфигурация подключения лежит в файле **application.properties**.  
@@ -72,6 +72,10 @@ Result: an application with data storage in a relational database, which we will
 - **bupd I T A G** : Update the book, where I is the book id, T is the book title, Author Id, G is the genre id;
 - **bdel I** : Delete a book by id, where is the book Id;
 - **ag**: Get all genres;
+
+## Test coverage:
+Tests for repositories.
+[src -> test -> java -> ru -> javlasov -> fifthHomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/fifthHomework/src/test/java/ru/javlasov/fifthhomework/repositories/impl)
 
 ## Data base
 The project uses the web version of the H2 database. The connection configuration is in the file **application.properties**.  

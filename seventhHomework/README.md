@@ -32,7 +32,7 @@ ___
 ## Покрытие тестами:
 Тестами покрыты методы репозиториев.
 
-[src -> test -> java -> ru -> javlasov -> seventhhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/feature/seventhhomework/src/test/java/ru/javlasov/seventhhomework/repositories/impl)
+[src -> test -> java -> ru -> javlasov -> seventhhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/seventhHomework/src/test/java/ru/javlasov/seventhhomework/repositories)
 
 ## База данных
 В проекте используется веб-версия базы данных H2. Конфигурация подключения лежит в файле **application.yaml**.  
@@ -82,7 +82,7 @@ use the "white magic" of Spring Data JPA to create repositories for JPA entities
 ## Test coverage
 The repository methods are covered by tests.
 
-[src -> test -> java -> ru -> javlasov -> seventhhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/feature/seventhhomework/src/test/java/ru/javlasov/seventhhomework/repositories/impl)
+[src -> test -> java -> ru -> javlasov -> seventhhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/seventhHomework/src/test/java/ru/javlasov/seventhhomework/repositories)
 
 ## Data base
 The project uses the web version of the H2 database. The connection configuration is in the file **application.yaml**.  

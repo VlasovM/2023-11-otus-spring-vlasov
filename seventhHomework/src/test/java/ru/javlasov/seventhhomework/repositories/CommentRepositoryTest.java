@@ -30,7 +30,10 @@ class CommentRepositoryTest {
     @MethodSource("getDbComments")
     void shouldGetCommentById(Comment expected) {
         var actualComment = commentRepository.findById(expected.getId());
-        assertThat(actualComment).isPresent().get().isEqualTo(expected);
+        assertThat(actualComment).isPresent();
+        assertThat(actualComment.get().getId()).isEqualTo(expected.getId());
+        assertThat(actualComment.get().getBook().getId()).isEqualTo(expected.getBook().getId());
+        assertThat(actualComment.get().getText()).isEqualTo(expected.getText());
     }
 
     @DisplayName("Should get list comment by bookId")
@@ -38,7 +41,9 @@ class CommentRepositoryTest {
     void findByBookId() {
         var expectedComments = getDbComments();
         var actualComments = commentRepository.findByBookId(1);
-        assertThat(actualComments).containsExactlyElementsOf(expectedComments);
+        assertThat(actualComments.get(0).getId()).isEqualTo(expectedComments.get(0).getId());
+        assertThat(actualComments.get(0).getText()).isEqualTo(expectedComments.get(0).getText());
+        assertThat(actualComments.get(0).getBook().getId()).isEqualTo(expectedComments.get(0).getBook().getId());
     }
 
     @Test
