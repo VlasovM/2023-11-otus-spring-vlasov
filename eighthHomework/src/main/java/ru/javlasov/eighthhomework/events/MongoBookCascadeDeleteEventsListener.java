@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventLis
 import org.springframework.data.mongodb.core.mapping.event.BeforeDeleteEvent;
 import org.springframework.stereotype.Component;
 import ru.javlasov.eighthhomework.models.Book;
-import ru.javlasov.eighthhomework.repositories.BookRepository;
 import ru.javlasov.eighthhomework.repositories.CommentRepository;
 
 @Component
@@ -14,15 +13,12 @@ public class MongoBookCascadeDeleteEventsListener extends AbstractMongoEventList
 
     private final CommentRepository commentRepository;
 
-    private final BookRepository bookRepository;
-
     @Override
     public void onBeforeDelete(BeforeDeleteEvent<Book> event) {
         super.onBeforeDelete(event);
         var source = event.getSource();
         var id = source.get("_id").toString();
-        var genreId = bookRepository.findById(id).orElseThrow().getGenre().getId();
-        commentRepository.deleteById(genreId);
+        commentRepository.deleteByBookId(id);
     }
 
 }
