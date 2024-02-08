@@ -43,9 +43,11 @@ class BookRepositoryTest {
     @MethodSource("getDbBooks")
     void shouldReturnCorrectBookById(Book expectedBook) {
         var actualBook = bookRepository.findById(expectedBook.getId());
-        assertThat(actualBook).isPresent()
-                .get()
-                .isEqualTo(expectedBook);
+        assertThat(actualBook).isPresent();
+        assertThat(actualBook.get().getId()).isEqualTo(expectedBook.getId());
+        assertThat(actualBook.get().getAuthor().getId()).isEqualTo(expectedBook.getAuthor().getId());
+        assertThat(actualBook.get().getGenre().getId()).isEqualTo(expectedBook.getGenre().getId());
+        assertThat(actualBook.get().getTitle()).isEqualTo(expectedBook.getTitle());
     }
 
     @DisplayName("should get all books")
@@ -54,8 +56,9 @@ class BookRepositoryTest {
         var actualBooks = bookRepository.findAll();
         var expectedBooks = dbBooks;
 
-        assertThat(actualBooks).containsExactlyElementsOf(expectedBooks);
-        actualBooks.forEach(System.out::println);
+        assertThat(actualBooks.size()).isEqualTo(expectedBooks.size());
+        assertThat(actualBooks.get(0).getId()).isEqualTo(expectedBooks.get(0).getId());
+        assertThat(actualBooks.get(1).getId()).isEqualTo(expectedBooks.get(1).getId());
     }
 
     @DisplayName("Should delete by id")

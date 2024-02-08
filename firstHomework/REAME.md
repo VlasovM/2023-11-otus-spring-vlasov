@@ -21,7 +21,7 @@ ___
 Сделал только тест для единственного сервиса, но он не несёт какой-либо функциональности, т.к.:
 `(оцениваться будет только попытка написать тест)`
 
-[src -> test -> java -> ru -> javlasov -> firstHomework -> parsingCSV -> service](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/feature/firstHomeWork/firstHomework.parsingCSV/src/test/java/ru/javlasov/firstHomework/parsingCSV/service)
+[src -> test -> java -> ru -> javlasov -> firstHomework ](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/firstHomework/src/test/java/ru/javlasov/firstHomework)
 
 ## Локальный запуск
 Для того, чтобы запустить проект локально вам необходимы JDK не ниже 17, система контроля версий git, сборщик проектов maven.
@@ -51,6 +51,12 @@ The result: a simple application configured with an XML context.
 The resources store questions and various answers to them in the form of a CSV file (5 questions).
 The questions can be with a choice of several options or with a free answer - at your desire and discretion.
 The application should simply output the test questions from a CSV file with possible answer options (if available).
+
+## Test coverage:
+Make tests only service, but it's mock test, 'cause:
+`(only an attempt to write a test will be evaluated)`
+
+[src -> test -> java -> ru -> javlasov -> firstHomework ](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/firstHomework/src/test/java/ru/javlasov/firstHomework)
 
 ## How to local start
 In order to run a project locally, you need a JDK of at least 17, a git version control system, and a maven project builder.

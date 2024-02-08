@@ -15,7 +15,7 @@ ___
 ## Покрытие тестами:
 Покрыл тестами класс CsvQuestionDao и TestServiceImpl через SpringBootTest
 
-[src -> test -> java -> ru -> javlasov -> fourthHomework](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/feature/thirdHomeWork/fourthHomework/src/test/)
+[src -> test -> java -> ru -> javlasov -> fourthHomework](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/fourthHomework/src/test/java/ru/javlasov/fourthHomework)
 
 ## Локальный запуск
 Для того, чтобы запустить проект локально вам необходимы JDK не ниже 17, система контроля версий git,
@@ -39,8 +39,8 @@ Use Best Practices to configure Spring Boot applications,
 effectively test Spring Boot applications, and write applications using Spring Shell.
 
 ## Test coverage
-I have covered the CsvQuestionDao and TestServiceImpl class with tests with SpringBootStest
-[src -> test -> java -> ru -> javlasov -> fourthHomework](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/feature/thirdHomeWork/fourthHomework/src/test/)
+I have covered the CsvQuestionDao and TestServiceImpl class with tests with SpringBootTest
+[src -> test -> java -> ru -> javlasov -> fourthHomework](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/fourthHomework/src/test/java/ru/javlasov/fourthHomework)
 
 ## How to local start
 In order to run a project locally, you need a JDK of at least 17, a git version control system, 

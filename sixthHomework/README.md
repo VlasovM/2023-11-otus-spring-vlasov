@@ -34,7 +34,7 @@ ___
 ## Покрытие тестами:
 Тестами покрыты методы репозиториев.
 
-[src -> test -> java -> ru -> javlasov -> sixthhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/feature/sixthHomework/src/test/java/ru/javlasov/sixthHomework/repositories/impl)
+[src -> test -> java -> ru -> javlasov -> sixthhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/sixthHomework/src/test/java/ru/javlasov/sixthhomework/repositories/impl)
 
 ## База данных
 В проекте используется веб-версия базы данных H2. Конфигурация подключения лежит в файле **application.yaml**.  
@@ -85,8 +85,7 @@ Result: A high-level application with JPA mapping of entities
 
 ## Test coverage
 The repository methods are covered by tests.
-
-[src -> test -> java -> ru -> javlasov -> sixthhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/feature/sixthHomework/src/test/java/ru/javlasov/sixthHomework/repositories/impl)
+[src -> test -> java -> ru -> javlasov -> sixthhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/sixthHomework/src/test/java/ru/javlasov/sixthhomework/repositories/impl)
 
 ## Data base
 The project uses the web version of the H2 database. The connection configuration is in the file **application.yaml**.  

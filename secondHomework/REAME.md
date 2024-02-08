@@ -19,7 +19,7 @@ ___
 ## Покрытие тестами:
 Покрыл тестами класс CsvQuestionDao и TestServiceImpl;
 
-[src -> test -> java -> ru -> javlasov -> secondHomework](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/feature/firstHomeWork/secondHomework/src/test/)
+[src -> test -> java -> ru -> javlasov -> secondHomework](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/secondHomework/src/test/java/ru/javlasov/secondHomework)
 
 ## Локальный запуск
 Для того, чтобы запустить проект локально вам необходимы JDK не ниже 17, система контроля версий git, сборщик проектов maven.
@@ -44,6 +44,11 @@ The result: a ready-made modern application on pure Spring
 ## Description:
 The resources store questions and various answers to them in the form of a CSV file (5 questions).
 The questions can be with a choice of several options or with a free answer - at your desire and discretion.
+
+## Test coverage:
+Tests for CsvQuestionDao and TestServiceImpl;
+
+[src -> test -> java -> ru -> javlasov -> secondHomework](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/secondHomework/src/test/java/ru/javlasov/secondHomework)
 
 ## How to local start
 In order to run a project locally, you need a JDK of at least 17, a git version control system, and a maven project builder.
