@@ -4,14 +4,15 @@
 Репозиторий для выполнение домашних заданий по курсу **Spring Framework** от компании [OTUS](https://otus.ru/).
 В каждой папке проекта есть свой файл **ReadMe** файл, в котором есть описание проекта.
 
-### Историй слияний в ветку master:
-* **15.12.2023 [feature/firstHomework]**: закончена домашняя работа №1 по блоку **"Введение в Spring Framework"**
-* **20.12.2023 [feature/secondHomework]**: закончена домашняя работа №2 по блоку **"Конфигурирование Spring-приложений"**
-* **27.12.2023 [feature/thirdHomework]**: закончена домашняя работа №3 по блоку **"Spring-boot"**
-* **04.01.2024 [feature/fourthHomework]**: закончена домашняя работа №4 по блоку **"Продвинутая конфигурация (часть 2) - Conditionals, Events, тестирование"**
-* **14.01.2024 [feature/fifthHomework]**: закончена домашняя работа №5 по блоку **DAO на Spring JDBC**
-* **19.01.2024 [feature/sixthHomework]**: закончена домашняя работа №6 по блоку **"JPQL, Spring ORM, DAO with Spring ORM + JPA"**
-* **27.01.2024 [feature/seventhHomework]**: закончена домашняя работа №7 по блоку **"Spring Data: Spring Data JPA"**
+### Навигация
+* [Приложение по проведению тестирования студентов (Введение в Spring Framework)](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/firstHomework)
+* [Приложение по проведению тестирования студентов (Конфигурирование Spring-приложений)](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/secondHomework)
+* [Тестирования студентов на Spring Boot ("Чёрная магия" Spring Boot )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/thirdHomework)
+* [Приложение для проведения опросов на Spring Shell (Продвинутая конфигурация (часть 2) - Conditionals, Events, тестирование )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/fourthHomework)
+* [Создать приложение, каталог книг в библиотеке (DAO на Spring JDBC )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/fifthHomework)
+* [Приложение для хранения книг на ORM (JPQL, Spring ORM, DAO на основе Spring ORM + JPA )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/sixthHomework)
+* [Приложение для хранения книг на Spring Data JPA ("Белая магия" Spring Data: Spring Data JPA )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/seventhHomework)
+* [Использовать MongoDB и spring-data для хранения информации о книгах (Spring Data для подключения к нереляционным БД )]()
 
 ### Студент: 
 Власов Максим Александрович | https://t.me/JaVlasov
@@ -23,14 +24,15 @@
 Repository for completing homework on the course **Spring Framework** from the company [OTUS](https://otus.ru/).
 Each project folder has its own **ReadMe** file, which contains a description of the project.
 
-### History pull request to branch master:
-* **15.12.2023 [feature/firstHomework]**: finished homework №1 by module **"Introduction to the Spring Framework"**
-* **20.12.2023 [feature/secondHomework]**: finished homework №2 by module **"Configuring Spring applications"**
-* **27.12.2023 [feature/thirdHomework]**: finished homework №3 by module **"Spring-boot"**
-* **04.01.2024 [feature/fourthHomework]**: finished homework №4 by module **"Advanced Configuration (Part 2) - Conditionals, Events, Testing"**
-* **14.01.2024 [feature/fifthHomework]**: finished homework #5 by module **"DAO на Spring JDBC"**
-* **19.01.2024 [feature/sixthHomework]**: finished homework #6 by module **"JPQL, Spring ORM, DAO with Spring ORM + JPA"**
-* **27.01.2024 [feature/seventhHomework]**: finished homework #7 by module **"Spring Data: Spring Data JPA"**
+### Navigation:
+* [Student Testing Application (Introduction to the Spring Framework)](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/firstHomework)
+* [Application for conducting student testing (Configuring Spring applications)](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/secondHomework)
+* [Testing students on Spring Boot ("Black Magic" of Spring Boot )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/thirdHomework)
+* [Spring Shell Survey Application (Advanced Configuration (Part 2) - Conditionals, Events, Testing)](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/fourthHomework)
+* [Create an application, a catalog of books in the library (DAO on Spring JDBC)](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/fifthHomework)
+* [ORM recording application (JPA, Spring ORM, DAO based on Spring ORM + JPA )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/sixthHomework)
+* [Application for storing books on Spring Data JPA ("White Magic" Spring Data: Spring Data JPA )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/seventhHomework)
+* [Use MongoDB and spring-data to store information about books (Spring Data to connect to non-relational databases)]()
 
 ### Student: 
 Vlasov Maxim Aleksandrovich | https://t.me/JaVlasov
