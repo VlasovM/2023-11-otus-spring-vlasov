@@ -1,7 +1,10 @@
 # Spring Data для подключения к нереляционным БД
+
 [English version bellow](#English-version)
 ___
+
 # Навигация
+
 - [Цель](#Цель)
 - [Shell команды](#Shell-команды)
 - [Покрытие тестами](#Покрытие-тестами)
@@ -9,17 +12,19 @@ ___
 - [Локальный запуск](#Локальный-запуск)
 
 ---
+
 ## Цель:
-Разрабатывать репозитории для хранения данных в NoSQL БД;
-использовать другие проекты Spring Data.
+
+Разрабатывать репозитории для хранения данных в NoSQL БД; использовать другие проекты Spring Data.
 
 ## Shell команды:
+
 - **help** : Список всех доступных команды;
 - **aa** : Получить всех авторов;
 - **abid N** : Получить автора по id, где N - id автора;
 - **ab** : Получить все книги;
 - **bbid N** : Получить книгу по id, где N - id книги;
-- **bins T A G** : Добавить новую книгу, где T - название книги, A - id автора, G - id жанра; 
+- **bins T A G** : Добавить новую книгу, где T - название книги, A - id автора, G - id жанра;
 - **bupd I T A G** : Обновить книгу, где I - id книги, T - название книги, A - id автора, G - id жанра;
 - **bdel I** : Удалить книгу по id, где I - id книги;
 - **ag**: Получить все жанры;
@@ -30,17 +35,20 @@ ___
 - **cdel I**: Удалить комментарий по id, где I - id комментария;
 
 ## Покрытие тестами:
+
 Тестами покрыт Book Repository
 
-[src -> test -> java -> ru -> javlasov -> eighthhomework -> repositories](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/seventhHomework/src/test/java/ru/javlasov/eighthhomework/repositories)
+[src -> test -> java -> ru -> javlasov -> seventhhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/eighthHomework/src/test/java/ru/javlasov/eighthhomework/repositories)
 
 ## База данных
+
 В проекте используется база данных mongodb. Конфигурация подключения лежит в файле **application.yaml**.  
 Вся инициализация происходит с помощью mongock. (класс DatabaseChangelog)
 
 ## Локальный запуск
-Для того, чтобы запустить проект локально вам необходимы JDK не ниже 17, система контроля версий git, сборщик проектов maven.
-Клонировать проект можно через git bash:
+
+Для того, чтобы запустить проект локально вам необходимы JDK не ниже 17, система контроля версий git, сборщик проектов
+maven. Клонировать проект можно через git bash:
 
     git clone https://github.com/VlasovM/2023-11-otus-spring-vlasov.git
 
@@ -51,6 +59,7 @@ ___
 # English version
 
 # Navigation
+
 - [Goal](#Goal)
 - [Description](#Description)
 - [Shell commands](#Shell-commands)
@@ -59,10 +68,11 @@ ___
 - [How to local start](#How-to-local-start)
 
 ## Goal:
-Develop repositories for storing data in NoSQL databases;
-use other Spring Data projects.
+
+Develop repositories for storing data in NoSQL databases; use other Spring Data projects.
 
 ## Shell commands:
+
 - **help** : List of all available commands;
 - **aa** : Get all the authors;
 - **abid N** : Get the author by id, where N is the author's id;
@@ -79,17 +89,20 @@ use other Spring Data projects.
 - **cdel I**: Delete comment by id, где I - comment id;
 
 ## Test coverage
+
 The Book Repository is covered with tests
 
-[src -> test -> java -> ru -> javlasov -> seventhhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/seventhHomework/src/test/java/ru/javlasov/seventhhomework/repositories)
+[src -> test -> java -> ru -> javlasov -> seventhhomework -> repositories -> impl](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/eighthHomework/src/test/java/ru/javlasov/eighthhomework/repositories)
 
 ## Data base
-The project uses the mongodb database. The connection configuration is in the **application.yaml** file.
-All initialization takes place using mongock. (DatabaseChangelog class)
+
+The project uses the mongodb database. The connection configuration is in the **application.yaml** file. All
+initialization takes place using mongock. (DatabaseChangelog class)
 
 ## How to local start
-In order to run a project locally, you need a JDK of at least 17, a git version control system, and a maven project builder.
-You can clone a project through git bash:
+
+In order to run a project locally, you need a JDK of at least 17, a git version control system, and a maven project
+builder. You can clone a project through git bash:
 
     git clone https://github.com/VlasovM/2023-11-otus-spring-vlasov.git
 

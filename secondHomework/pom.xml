@@ -17,15 +17,19 @@
         <checkstyle.config.url>
             https://raw.githubusercontent.com/OtusTeam/Spring/master/checkstyle.xml
         </checkstyle.config.url>
-        <mockito-core.version>4.11.0</mockito-core.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <spring-context.version>6.1.1</spring-context.version>
+        <opencsv.version>5.8</opencsv.version>
+        <mockito-core.version>4.11.0</mockito-core.version>
+        <junit-jupiter-api.version>5.10.0</junit-jupiter-api.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring-context.version}</version>
         </dependency>
         <dependency>
             <groupId>com.opencsv</groupId>
@@ -36,16 +40,19 @@
                     <artifactId>commons-collections</artifactId>
                 </exclusion>
             </exclusions>
+            <version>${opencsv.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
+            <version>${mockito-core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
+            <version>${junit-jupiter-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
