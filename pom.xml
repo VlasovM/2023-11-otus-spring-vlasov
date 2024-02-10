@@ -20,16 +20,7 @@
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot-starter.version>3.2.0</spring-boot-starter.version>
-        <spring-boot-starter-test.version>3.2.0</spring-boot-starter-test.version>
-        <spring-boot-starter-data-jdbc.version>3.2.0</spring-boot-starter-data-jdbc.version>
-        <spring-boot-starter-data-jpa.version>3.2.0</spring-boot-starter-data-jpa.version>
-        <spring-shell-starter.version>3.2.0</spring-shell-starter.version>
-        <spring-context.version>6.1.1</spring-context.version>
-        <h2.version>2.2.220</h2.version>
-        <opencsv.version>5.8</opencsv.version>
         <lombok.version>1.18.30</lombok.version>
-        <mockito-core.version>4.11.0</mockito-core.version>
-        <junit-jupiter-api.version>5.10.0</junit-jupiter-api.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
@@ -49,44 +40,8 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
-                <version>${spring-boot-starter-test.version}</version>
+                <version>${spring-boot-starter.version}</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring-context.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-jdbc</artifactId>
-                <version>${spring-boot-starter-data-jdbc.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>${spring-boot-starter-data-jpa.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.shell</groupId>
-                <artifactId>spring-shell-starter</artifactId>
-                <version>${spring-shell-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.opencsv</groupId>
-                <artifactId>opencsv</artifactId>
-                <version>${opencsv.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-collections</groupId>
-                        <artifactId>commons-collections</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -94,19 +49,6 @@
                 <optional>true</optional>
                 <version>${lombok.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit-jupiter-api.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockito-core.version}</version>
-                <scope>test</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
