@@ -12,7 +12,7 @@
 * [Создать приложение, каталог книг в библиотеке (DAO на Spring JDBC )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/fifthHomework)
 * [Приложение для хранения книг на ORM (JPQL, Spring ORM, DAO на основе Spring ORM + JPA )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/sixthHomework)
 * [Приложение для хранения книг на Spring Data JPA ("Белая магия" Spring Data: Spring Data JPA )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/seventhHomework)
-* [Использовать MongoDB и spring-data для хранения информации о книгах (Spring Data для подключения к нереляционным БД )]()
+* [Использовать MongoDB и spring-data для хранения информации о книгах (Spring Data для подключения к нереляционным БД )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/eighthHomework)
 
 ### Студент: 
 Власов Максим Александрович | https://t.me/JaVlasov
@@ -32,7 +32,7 @@ Each project folder has its own **ReadMe** file, which contains a description of
 * [Create an application, a catalog of books in the library (DAO on Spring JDBC)](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/fifthHomework)
 * [ORM recording application (JPA, Spring ORM, DAO based on Spring ORM + JPA )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/sixthHomework)
 * [Application for storing books on Spring Data JPA ("White Magic" Spring Data: Spring Data JPA )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/seventhHomework)
-* [Use MongoDB and spring-data to store information about books (Spring Data to connect to non-relational databases)]()
+* [Use MongoDB and spring-data to store information about books (Spring Data to connect to non-relational databases)](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/eighthHomework)
 
 ### Student: 
 Vlasov Maxim Aleksandrovich | https://t.me/JaVlasov
