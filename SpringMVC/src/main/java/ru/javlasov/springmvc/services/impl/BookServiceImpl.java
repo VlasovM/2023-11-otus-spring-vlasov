@@ -3,6 +3,7 @@ package ru.javlasov.springmvc.services.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.javlasov.springmvc.dto.BookDto;
 import ru.javlasov.springmvc.exceptions.EntityNotFoundException;
 import ru.javlasov.springmvc.model.Book;
 import ru.javlasov.springmvc.repositories.AuthorRepository;
@@ -11,7 +12,6 @@ import ru.javlasov.springmvc.repositories.GenreRepository;
 import ru.javlasov.springmvc.services.BookService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -25,8 +25,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Book> findById(long id) {
-        return bookRepository.findById(id);
+    public BookDto findById(long id) {
+        var book = bookRepository.findById(id);
+        if (book.isPresent()) {
+            return new BookDto(book.get().getId(), book.get().getTitle(), book.get().getAuthor().getId(),
+                    book.get().getGenre().getId());
+        }
+        throw new EntityNotFoundException(String.format("Не удалось найти книгу с id = %d", id));
     }
 
     @Override
@@ -46,7 +51,7 @@ public class BookServiceImpl implements BookService {
     public Book update(long id, String title, long authorId, long genreId) {
         bookRepository
                 .findById(id).orElseThrow(() ->
-                new EntityNotFoundException("Not found book with id = %d".formatted(id)));
+                        new EntityNotFoundException("Not found book with id = %d".formatted(id)));
         return save(id, title, authorId, genreId);
     }
 
