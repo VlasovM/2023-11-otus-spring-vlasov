@@ -3,8 +3,11 @@ package ru.javlasov.springmvc.services.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.javlasov.springmvc.dto.BookDto;
+import ru.javlasov.springmvc.dto.BookCreateDto;
+import ru.javlasov.springmvc.dto.BookUpdateDto;
+import ru.javlasov.springmvc.dto.BookViewDto;
 import ru.javlasov.springmvc.exceptions.EntityNotFoundException;
+import ru.javlasov.springmvc.mappers.BookMapper;
 import ru.javlasov.springmvc.model.Book;
 import ru.javlasov.springmvc.repositories.AuthorRepository;
 import ru.javlasov.springmvc.repositories.BookRepository;
@@ -23,50 +26,50 @@ public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
 
-    @Override
-    @Transactional(readOnly = true)
-    public BookDto findById(long id) {
-        var book = bookRepository.findById(id);
-        if (book.isPresent()) {
-            return new BookDto(book.get().getId(), book.get().getTitle(), book.get().getAuthor().getId(),
-                    book.get().getGenre().getId());
-        }
-        throw new EntityNotFoundException(String.format("Не удалось найти книгу с id = %d", id));
-    }
+    private final BookMapper mapper;
 
     @Override
     @Transactional(readOnly = true)
-    public List<Book> findAll() {
-        return bookRepository.findAll();
+    public BookUpdateDto findById(Long id) {
+        var book = bookRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Not found book with id = %d".formatted(id)));
+        return mapper.entityToDtoUpdate(book);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<BookViewDto> findAll() {
+        return mapper.entityToDtoView(bookRepository.findAll());
     }
 
     @Override
     @Transactional
-    public Book create(String title, long authorId, long genreId) {
-        return save(0, title, authorId, genreId);
-    }
-
-    @Override
-    @Transactional
-    public Book update(long id, String title, long authorId, long genreId) {
-        bookRepository
-                .findById(id).orElseThrow(() ->
-                        new EntityNotFoundException("Not found book with id = %d".formatted(id)));
-        return save(id, title, authorId, genreId);
-    }
-
-    @Override
-    @Transactional
-    public void deleteById(long id) {
-        bookRepository.deleteById(id);
-    }
-
-    private Book save(long id, String title, long authorId, long genreId) {
+    public BookCreateDto create(String title, long authorId, long genreId) {
         var author = authorRepository.findById(authorId)
                 .orElseThrow(() -> new EntityNotFoundException("Author with id %d not found".formatted(authorId)));
         var genre = genreRepository.findById(genreId)
                 .orElseThrow(() -> new EntityNotFoundException("Genre with id %d not found".formatted(genreId)));
-        var book = id == 0 ? new Book(title, author, genre) : new Book(id, title, author, genre);
-        return bookRepository.save(book);
+        var book = new Book(title, author, genre);
+        book = bookRepository.save(book);
+        return mapper.entityToDtoCreate(book);
     }
+
+    @Override
+    @Transactional
+    public BookUpdateDto update(Long id, String title, long authorId, long genreId) {
+        var author = authorRepository.findById(authorId)
+                .orElseThrow(() -> new EntityNotFoundException("Author with id %d not found".formatted(authorId)));
+        var genre = genreRepository.findById(genreId)
+                .orElseThrow(() -> new EntityNotFoundException("Genre with id %d not found".formatted(genreId)));
+        var book = new Book(id, title, author, genre);
+        book = bookRepository.save(book);
+        return mapper.entityToDtoUpdate(book);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        bookRepository.deleteById(id);
+    }
+
 }

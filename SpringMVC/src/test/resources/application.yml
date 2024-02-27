@@ -9,5 +9,5 @@ spring:
   sql:
     init:
       mode: always
-      data-locations: dataTest.sql
-      schema-locations: schemaTest.sql
+      data-locations: "classpath:dataTest.sql"
+      schema-locations: "classpath:schemaTest.sql"

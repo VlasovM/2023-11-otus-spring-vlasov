@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.javlasov.springmvc.dto.BookDto;
-import ru.javlasov.springmvc.model.Book;
+import ru.javlasov.springmvc.dto.BookCreateDto;
+import ru.javlasov.springmvc.dto.BookUpdateDto;
+import ru.javlasov.springmvc.dto.BookViewDto;
+import ru.javlasov.springmvc.services.AuthorService;
 import ru.javlasov.springmvc.services.BookService;
+import ru.javlasov.springmvc.services.GenreService;
 
 import java.util.List;
 
@@ -21,29 +24,38 @@ public class BookController {
 
     private final BookService bookService;
 
+    private final AuthorService authorService;
+
+    private final GenreService genreService;
+
     @GetMapping("/")
     public String getAllBooks(Model model) {
-        List<Book> allBooks = bookService.findAll();
+        List<BookViewDto> allBooks = bookService.findAll();
         model.addAttribute("books", allBooks);
         return "homePage";
     }
 
     @PostMapping("/delete")
-    public String deleteBook(@RequestParam("id") long id) {
+    public String deleteBook(@RequestParam("id") Long id) {
         bookService.deleteById(id);
         return "redirect:/";
     }
 
     @GetMapping("/edit")
-    public String editBook(@RequestParam("id") long id, Model model) {
-        var bookDto = bookService.findById(id);
-        model.addAttribute("book", bookDto);
+    public String editBook(@RequestParam("id") Long id, Model model) {
+        var bookUpdateDto = bookService.findById(id);
+        var authors = authorService.findAll();
+        var genres = genreService.findAll();
+        model.addAttribute("book", bookUpdateDto);
+        model.addAttribute("authors", authors);
+        model.addAttribute("genres", genres);
         return "edit";
     }
 
     @PostMapping("/edit")
-    public String editBook(@Valid @ModelAttribute("book") BookDto book,
-                           BindingResult bindingResult, Model model) {
+    public String editBook(@Valid @ModelAttribute("book") BookUpdateDto book,
+                           BindingResult bindingResult) {
+        System.out.println(bindingResult);
         if (bindingResult.hasErrors()) {
             return "edit";
         }
@@ -53,12 +65,16 @@ public class BookController {
 
     @GetMapping("/create")
     public String addBook(Model model) {
-        model.addAttribute("book", new BookDto(0, "", 0, 0));
+        var authors = authorService.findAll();
+        var genres = genreService.findAll();
+        model.addAttribute("authors", authors);
+        model.addAttribute("genres", genres);
+        model.addAttribute("book", new BookCreateDto(null, "", null, null));
         return "create";
     }
 
     @PostMapping("/create")
-    public String addBook(@Valid @ModelAttribute("book") BookDto book, BindingResult bindingResult) {
+    public String addBook(@Valid @ModelAttribute("book") BookCreateDto book, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "create";
         }

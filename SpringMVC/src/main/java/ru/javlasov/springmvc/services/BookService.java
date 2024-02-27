@@ -1,20 +1,21 @@
 package ru.javlasov.springmvc.services;
 
-import ru.javlasov.springmvc.dto.BookDto;
-import ru.javlasov.springmvc.model.Book;
+import ru.javlasov.springmvc.dto.BookCreateDto;
+import ru.javlasov.springmvc.dto.BookUpdateDto;
+import ru.javlasov.springmvc.dto.BookViewDto;
 
 import java.util.List;
 
 public interface BookService {
 
-    BookDto findById(long id);
+    BookUpdateDto findById(Long id);
 
-    List<Book> findAll();
+    List<BookViewDto> findAll();
 
-    Book create(String title, long authorId, long genreId);
+    BookCreateDto create(String title, long authorId, long genreId);
 
-    Book update(long id, String title, long authorId, long genreId);
+    BookUpdateDto update(Long id, String title, long authorId, long genreId);
 
-    void deleteById(long id);
+    void deleteById(Long id);
 
 }

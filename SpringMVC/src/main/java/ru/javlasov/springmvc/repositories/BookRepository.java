@@ -18,6 +18,4 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     @NonNull
     List<Book> findAll();
 
-    void deleteById(long id);
-
 }

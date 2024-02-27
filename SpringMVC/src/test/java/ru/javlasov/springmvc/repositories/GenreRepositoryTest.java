@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import ru.javlasov.springmvc.model.Genre;
@@ -38,7 +37,7 @@ class GenreRepositoryTest {
     @ParameterizedTest
     @MethodSource("getDbGenres")
     void findById(Genre expectedGenre) {
-        var actualGenre = genreRepository.findById(1);
+        var actualGenre = genreRepository.findById(1L);
         assertThat(actualGenre).isPresent();
         assertThat(actualGenre.get().getId()).isEqualTo(expectedGenre.getId());
         assertThat(actualGenre.get().getName()).isEqualTo(expectedGenre.getName());

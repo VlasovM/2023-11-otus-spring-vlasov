@@ -45,14 +45,13 @@
     <div class="row">
         <label for="book-author-input">Автор:</label>
         <select id = "book-author-input" name="authorId" type="text" th:value="*{authorId}">
-            <option th:value="1">Николай Васильевич Гоголь</option>
-            <option th:value="2">Фёдор Михайлович Достоевский</option>
+            <option th:each="author :${authors}" th:value="${author.id}" th:text="${author.fullName}">Имя автора</option>
         </select>
     </div>
     <div class="row">
         <label for="book-genre-input">Жанр:</label>
         <select id = "book-genre-input" name="genreId" type="text" th:value="*{genreId}">
-            <option th:value="1">Роман</option>
+            <option th:each="genre :${genres}" th:value="${genre.id}" th:text="${genre.name}">Жанр</option>
         </select>
     </div>
 

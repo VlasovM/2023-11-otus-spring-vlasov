@@ -11,17 +11,16 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+public class BookCreateDto {
 
-public class BookDto {
-
-    private long id;
+    private Long id;
 
     @NotBlank(message = "Название книги не может быть пустым")
     @Size(min = 2, max = 30, message = "Допустимая длина книги от 2 до 20 символов")
     private String title;
 
-    private long authorId;
+    private Long authorId;
 
-    private long genreId;
+    private Long genreId;
 
 }

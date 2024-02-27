@@ -42,7 +42,7 @@ public class CommentServiceImpl implements CommentService {
                 .findById(id).orElseThrow(() ->
                         new EntityNotFoundException("Comment with id = %d not found".formatted(id)));
         if (comment.getBook().getId() != bookId) {
-            throw new EntityNotFoundException("Incorrect book id. Expected: %d, Actual: %d"
+            throw new IllegalArgumentException("Incorrect book id. Expected: %d, Actual: %d"
                     .formatted(comment.getBook().getId(), bookId));
         }
         comment.setText(text);
