@@ -1,15 +1,3 @@
-SELECT
-    'CREATE DATABASE IF NOT EXISTS library
-    WITH
-    OWNER = postgres
-    ENCODING = ''UTF8''
-    LC_COLLATE = ''Russian_Russia.1251''
-    LC_CTYPE = ''Russian_Russia.1251''
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1
-    IS_TEMPLATE = False;'
-    WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'library');
-
 CREATE TABLE IF NOT EXISTS authors
 (
     id SERIAL PRIMARY KEY NOT NULL,

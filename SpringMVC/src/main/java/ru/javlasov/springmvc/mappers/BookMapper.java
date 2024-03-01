@@ -3,8 +3,8 @@ package ru.javlasov.springmvc.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.javlasov.springmvc.dto.BookCreateDto;
+import ru.javlasov.springmvc.dto.BookDto;
 import ru.javlasov.springmvc.dto.BookUpdateDto;
-import ru.javlasov.springmvc.dto.BookViewDto;
 import ru.javlasov.springmvc.model.Book;
 
 import java.util.List;
@@ -22,8 +22,8 @@ public interface BookMapper {
 
     @Mapping(target = "author", source = "source.author.fullName")
     @Mapping(target = "genre", source = "source.genre.name")
-    BookViewDto entityToDtoView(Book source);
+    BookDto entityToDtoView(Book source);
 
-    List<BookViewDto> entityToDtoView(List<Book> source);
+    List<BookDto> entityToDtoView(List<Book> source);
 
 }

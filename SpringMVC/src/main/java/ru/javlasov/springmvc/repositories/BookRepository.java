@@ -11,7 +11,9 @@ import java.util.Optional;
 public interface BookRepository extends CrudRepository<Book, Long> {
 
     @EntityGraph(value = "author-genre-entity-graph")
-    Optional<Book> findById(long id);
+    @Override
+    @NonNull
+    Optional<Book> findById(Long id);
 
     @Override
     @EntityGraph(value = "author-genre-entity-graph")

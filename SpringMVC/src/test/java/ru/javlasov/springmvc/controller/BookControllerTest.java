@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.javlasov.springmvc.dto.BookCreateDto;
+import ru.javlasov.springmvc.dto.BookDto;
 import ru.javlasov.springmvc.dto.BookUpdateDto;
-import ru.javlasov.springmvc.dto.BookViewDto;
 import ru.javlasov.springmvc.model.Author;
 import ru.javlasov.springmvc.model.Book;
 import ru.javlasov.springmvc.model.Genre;
@@ -38,12 +39,6 @@ public class BookControllerTest {
 
     @MockBean
     private GenreService mockGenreService;
-
-//    @MockBean
-//    private AuthorMapper authorMapper;
-//
-//    @MockBean
-//    private GenreMapper getTitle;
 
     @Test
     @DisplayName("Should get all books")
@@ -78,48 +73,50 @@ public class BookControllerTest {
                 .andExpect(view().name("edit"))
                 .andExpect(model().attributeExists("book"))
                 .andReturn().getResponse().getContentAsString();
-        assertTrue(content.contains(getBookUpdateDtoFromBook().getTitle()));
+        assertTrue(content.contains(getAllBooks().get(0).getTitle()));
     }
 
     @Test
     @DisplayName("Should edit book")
     void shouldEditBook() throws Exception {
-//        this.mockMvc.perform(post("/edit"))
-//                .andExpect(status().is3xxRedirection())
-//                .andExpect(view().name("redirect:/"));
+        this.mockMvc.perform(post("/edit")
+                        .param("id", String.valueOf(getBookUpdateDtoFromBook().getId()))
+                        .param("title", getBookUpdateDtoFromBook().getTitle())
+                        .param("authorId", String.valueOf(getBookUpdateDtoFromBook().getAuthorId()))
+                        .param("genreId", String.valueOf(getBookUpdateDtoFromBook().getGenreId())))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/"));
     }
 
     @Test
     @DisplayName("Should redirect to save view")
     void shouldRedirectToSaveView() throws Exception {
-//        var content = mockMvc.perform(get("/create"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("create"))
-//                .andExpect(model().attributeExists("book"))
-//                .andReturn().getResponse().getContentAsString();
-//        assertTrue(content.contains(new BookDto(0, "", 0, 0).getTitle()));
+        this.mockMvc.perform(get("/create"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("create"))
+                .andExpect(model().attributeExists("book"))
+                .andReturn().getResponse().getContentAsString();
     }
 
     @Test
     @DisplayName("Should save book")
     void shouldSaveBook() throws Exception {
-//        this.mockMvc.perform(post("/create")
-//                        .param("title", getAllBooks().get(0).getTitle())
-//                        .param("id", String.valueOf(getAllBooks().get(0).getId()))
-//                        .param("authorId", String.valueOf(getAllBooks().get(0).getAuthor().getId()))
-//                        .param("genreId", String.valueOf(getAllBooks().get(0).getGenre().getId())))
-//                .andExpect(status().is3xxRedirection())
-//                .andExpect(view().name("redirect:/"));
+        this.mockMvc.perform(post("/create")
+                        .param("title", getCreatedBook().getTitle())
+                        .param("authorId", String.valueOf(getCreatedBook().getAuthorId()))
+                        .param("genreId", String.valueOf(getCreatedBook().getGenreId())))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/"));
     }
 
-    private List<BookViewDto> getAllBooks() {
+    private List<BookDto> getAllBooks() {
         Book bookFirst = new Book("Три товарища", getAllAuthors().get(0), getAllGenres().get(0));
         Book bookSecond = new Book("1984", getAllAuthors().get(1), getAllGenres().get(0));
-        BookViewDto bookViewDtoFirst = new BookViewDto(bookFirst.getId(), bookFirst.getTitle(), bookFirst.getAuthor().getFullName(),
+        BookDto bookDtoFirst = new BookDto(bookFirst.getId(), bookFirst.getTitle(), bookFirst.getAuthor().getFullName(),
                 bookFirst.getGenre().getName());
-        BookViewDto bookViewDtoSecond = new BookViewDto(bookSecond.getId(), bookSecond.getTitle(), bookSecond.getAuthor().getFullName(),
+        BookDto bookDtoSecond = new BookDto(bookSecond.getId(), bookSecond.getTitle(), bookSecond.getAuthor().getFullName(),
                 bookSecond.getGenre().getName());
-        return List.of(bookViewDtoFirst, bookViewDtoSecond);
+        return List.of(bookDtoFirst, bookDtoSecond);
     }
 
     private List<Author> getAllAuthors() {
@@ -133,6 +130,10 @@ public class BookControllerTest {
     private BookUpdateDto getBookUpdateDtoFromBook() {
         Book book = new Book("Три товарища", getAllAuthors().get(0), getAllGenres().get(0));
         return new BookUpdateDto(book.getId(), book.getTitle(), book.getAuthor().getId(), book.getGenre().getId());
+    }
+
+    private BookCreateDto getCreatedBook() {
+        return new BookCreateDto(getAllBooks().get(0).getTitle(), getAllAuthors().get(0).getId(), getAllGenres().get(0).getId());
     }
 
 }

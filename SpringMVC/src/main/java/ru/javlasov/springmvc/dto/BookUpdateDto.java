@@ -21,8 +21,10 @@ public class BookUpdateDto {
     @Size(min = 2, max = 30, message = "Допустимая длина книги от 2 до 20 символов")
     private String title;
 
+    @NotNull
     private Long authorId;
 
+    @NotNull
     private Long genreId;
 
 }
