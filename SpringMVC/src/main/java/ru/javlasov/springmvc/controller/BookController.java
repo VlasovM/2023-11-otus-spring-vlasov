@@ -61,7 +61,7 @@ public class BookController {
             model.addAttribute("genres", genreService.findAll());
             return "edit";
         }
-        bookService.update(book.getId(), book.getTitle(), book.getAuthorId(), book.getGenreId());
+        bookService.update(book);
         return "redirect:/";
     }
 
@@ -83,7 +83,7 @@ public class BookController {
             model.addAttribute("genres", genreService.findAll());
             return "create";
         }
-        bookService.create(book.getTitle(), book.getAuthorId(), book.getGenreId());
+        bookService.create(book);
         return "redirect:/";
     }
 
