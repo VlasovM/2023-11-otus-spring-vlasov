@@ -6,9 +6,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>firstHomework.parsingCSV</name>
     <parent>
-        <groupId>ru.javlasov</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.2</version>
     </parent>
     <description>First homework for studying in OTUS</description>
     <properties>
@@ -25,6 +25,7 @@
         <opencsv.version>5.8</opencsv.version>
         <mockito-core.version>4.11.0</mockito-core.version>
         <junit-jupiter-api.version>5.10.0</junit-jupiter-api.version>
+        <lombok.version>1.18.30</lombok.version>
     </properties>
     <dependencies>
         <dependency>
@@ -58,6 +59,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <optional>true</optional>
         </dependency>
     </dependencies>
