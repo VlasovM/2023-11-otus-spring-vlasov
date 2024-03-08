@@ -20,8 +20,10 @@ import ru.javlasov.springajax.services.GenreService;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -47,11 +49,44 @@ public class BookControllerTest {
 
     @Test
     @DisplayName("Should get all books")
-    void shouldGetAllBooks() throws Exception {
+    void getAllBooksTest() throws Exception {
         given(mockBookService.findAll()).willReturn(getAllBooks());
-        var content = mockMvc.perform(get("/api/v1/book/").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/v1/book/").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(getAllBooks())));
+    }
+
+    @Test
+    @DisplayName("Should find book by id")
+    void getBookByIdTest() throws Exception {
+        var expectedBook = getBookUpdateDtoFromBook();
+        mockMvc.perform(put("/api/v1/book/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(expectedBook)))
+                .andExpect(status().isOk());
+        verify(mockBookService).update(expectedBook);
+    }
+
+    @Test
+    @DisplayName("Should delete book by id")
+    void deleteBookByIdTest() throws Exception {
+        var deletedBookId = 1L;
+        mockMvc.perform(delete("/api/v1/book/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(deletedBookId)))
+                .andExpect(status().isOk());
+        verify(mockBookService).deleteById(deletedBookId);
+        assertThat(mockBookService.findById(deletedBookId)).isNull();
+    }
+
+    @Test
+    @DisplayName("Should create new book")
+    void createNewBookTest() throws Exception {
+        var content = getCreatedBook();
+        mockMvc.perform(post("/api/v1/book/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(content)))
+                .andExpect(status().is2xxSuccessful());
     }
 
     private List<BookDto> getAllBooks() {
@@ -74,7 +109,7 @@ public class BookControllerTest {
 
     private BookUpdateDto getBookUpdateDtoFromBook() {
         var book = new Book("Три товарища", getAllAuthors().get(0), getAllGenres().get(0));
-        return new BookUpdateDto(book.getId(), book.getTitle(), book.getAuthor().getId(), book.getGenre().getId());
+        return new BookUpdateDto(1L, book.getTitle(), book.getAuthor().getId(), book.getGenre().getId());
     }
 
     private BookCreateDto getCreatedBook() {
