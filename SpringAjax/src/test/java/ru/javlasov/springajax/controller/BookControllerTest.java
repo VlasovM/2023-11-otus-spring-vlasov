@@ -6,11 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.javlasov.springajax.dto.BookCreateDto;
 import ru.javlasov.springajax.dto.BookDto;
 import ru.javlasov.springajax.dto.BookUpdateDto;
+import ru.javlasov.springajax.exceptions.NotFoundException;
 import ru.javlasov.springajax.model.Author;
 import ru.javlasov.springajax.model.Book;
 import ru.javlasov.springajax.model.Genre;
@@ -74,7 +76,7 @@ public class BookControllerTest {
         mockMvc.perform(delete("/api/v1/book/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(deletedBookId)))
-                .andExpect(status().isOk());
+                .andExpect(status().is2xxSuccessful());
         verify(mockBookService).deleteById(deletedBookId);
         assertThat(mockBookService.findById(deletedBookId)).isNull();
     }
@@ -87,6 +89,28 @@ public class BookControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(content)))
                 .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    @DisplayName("Should find not found entity and get 404 code")
+    void notFountEntityTest() throws Exception {
+        var notExistingBook = getBookUpdateDtoFromBook();
+        given(mockBookService.update(notExistingBook)).willThrow(new NotFoundException("Message from exception"));
+        mockMvc.perform(put("/api/v1/book/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(notExistingBook)))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @DisplayName("Should update book with empty title and get 400 code")
+    void incorrectUpdateBookTest() throws Exception {
+        var updatedBook = getBookUpdateDtoFromBook();
+        updatedBook.setTitle("");
+        mockMvc.perform(put("/api/v1/book/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(updatedBook)))
+                .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
     }
 
     private List<BookDto> getAllBooks() {

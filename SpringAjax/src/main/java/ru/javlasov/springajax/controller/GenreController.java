@@ -1,7 +1,6 @@
 package ru.javlasov.springajax.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +17,8 @@ public class GenreController {
     private final GenreService genreService;
 
     @GetMapping("genre/")
-    public ResponseEntity<List<GenreDto>> findAll() {
-        return ResponseEntity.ok(genreService.findAll());
+    public List<GenreDto> findAll() {
+        return genreService.findAll();
     }
 
 }

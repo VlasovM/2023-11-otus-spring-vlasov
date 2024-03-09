@@ -1,13 +1,13 @@
 package ru.javlasov.springajax.services;
 
+import ru.javlasov.springajax.dto.CommentDto;
 import ru.javlasov.springajax.model.Comment;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CommentService {
 
-    Optional<Comment> findById(long id);
+    CommentDto findById(long id);
 
     Comment create(String text, long bookId);
 
@@ -15,6 +15,6 @@ public interface CommentService {
 
     void deleteById(long id);
 
-    List<Comment> findCommentsByBookId(long bookId);
+    List<CommentDto> findCommentsByBookId(long bookId);
 
 }

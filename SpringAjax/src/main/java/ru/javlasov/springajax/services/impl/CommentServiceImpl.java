@@ -3,14 +3,15 @@ package ru.javlasov.springajax.services.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.javlasov.springajax.exceptions.EntityNotFoundException;
+import ru.javlasov.springajax.dto.CommentDto;
+import ru.javlasov.springajax.exceptions.NotFoundException;
+import ru.javlasov.springajax.mappers.CommentMapper;
 import ru.javlasov.springajax.model.Comment;
 import ru.javlasov.springajax.repositories.BookRepository;
 import ru.javlasov.springajax.repositories.CommentRepository;
 import ru.javlasov.springajax.services.CommentService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,17 +21,21 @@ public class CommentServiceImpl implements CommentService {
 
     private final BookRepository bookRepository;
 
+    private final CommentMapper mapper;
+
     @Override
     @Transactional(readOnly = true)
-    public Optional<Comment> findById(long id) {
-        return commentRepository.findById(id);
+    public CommentDto findById(long id) {
+        var comment = commentRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format("Comment with id = %d not found", id)));
+        return mapper.entityToDto(comment);
     }
 
     @Override
     @Transactional
     public Comment create(String text, long bookId) {
         var book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new EntityNotFoundException("Not found book with id = %d".formatted(bookId)));
+                .orElseThrow(() -> new NotFoundException("Not found book with id = %d".formatted(bookId)));
         var comment = new Comment(text, book);
         return commentRepository.save(comment);
     }
@@ -40,7 +45,7 @@ public class CommentServiceImpl implements CommentService {
     public Comment update(long id, String text, long bookId) {
         var comment = commentRepository
                 .findById(id).orElseThrow(() ->
-                        new EntityNotFoundException("Comment with id = %d not found".formatted(id)));
+                        new NotFoundException("Comment with id = %d not found".formatted(id)));
         if (comment.getBook().getId() != bookId) {
             throw new IllegalArgumentException("Incorrect book id. Expected: %d, Actual: %d"
                     .formatted(comment.getBook().getId(), bookId));
@@ -57,8 +62,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Comment> findCommentsByBookId(long bookId) {
-        return commentRepository.findByBookId(bookId);
+    public List<CommentDto> findCommentsByBookId(long bookId) {
+        return mapper.entityToDtoList(commentRepository.findByBookId(bookId));
     }
 
 }
