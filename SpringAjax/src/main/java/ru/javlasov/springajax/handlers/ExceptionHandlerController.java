@@ -13,7 +13,7 @@ import ru.javlasov.springajax.exceptions.NotFoundException;
 @RestControllerAdvice
 public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
-    Logger logger = LoggerFactory.getLogger(ExceptionHandlerController.class);
+    private final Logger logger = LoggerFactory.getLogger(ExceptionHandlerController.class);
 
     @ExceptionHandler(value = NotFoundException.class)
     private ResponseEntity<ErrorDto> handleConflict(NotFoundException ex) {
