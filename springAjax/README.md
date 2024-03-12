@@ -1,4 +1,4 @@
-# Spring MVC with Thymeleaf
+# Library with AJAX
 
 [English version bellow](#English-version)
 ___
