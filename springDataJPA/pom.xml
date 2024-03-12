@@ -9,9 +9,9 @@
         <relativePath/>
     </parent>
     <groupId>ru.Javlasov</groupId>
-    <artifactId>springBootDataJPA</artifactId>
+    <artifactId>springDataJPA</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springBootDataJPA</name>
+    <name>springDataJPA</name>
     <description>seventhHomework</description>
     <properties>
         <java.version>17</java.version>
