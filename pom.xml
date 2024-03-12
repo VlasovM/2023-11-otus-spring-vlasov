@@ -7,15 +7,16 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>firstHomework</module>
-        <module>secondHomework</module>
-        <module>thirdHomework</module>
-        <module>fourthHomework</module>
-        <module>fifthHomework</module>
-        <module>sixthHomework</module>
-        <module>seventhHomework</module>
-        <module>eighthHomework</module>
-        <module>SpringMVC</module>
+        <module>springXMLConfig</module>
+        <module>springAnnotationConfig</module>
+        <module>springBootCSVParser</module>
+        <module>springShell</module>
+        <module>springJDBC</module>
+        <module>springJPA</module>
+        <module>springDataJPA</module>
+        <module>springMongoDB</module>
+        <module>springThymeleaf</module>
+        <module>springAjax</module>
         <module>baseAuth</module>
     </modules>
     <properties>
