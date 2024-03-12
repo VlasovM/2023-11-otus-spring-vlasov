@@ -22,4 +22,13 @@ public class User {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "middle_name")
+    private String middleName;
+
+    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "role")
+    private String role;
+
 }

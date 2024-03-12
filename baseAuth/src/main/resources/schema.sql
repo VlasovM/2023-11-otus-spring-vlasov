@@ -27,3 +27,12 @@ CREATE TABLE IF NOT EXISTS comments
     book_id BIGINT NOT NULL,
     FOREIGN KEY (book_id) REFERENCES books (id)
 );
+
+CREATE TABLE IF NOT EXISTS users
+(
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR NOT NULL,
+    surname VARCHAR NOT NULL,
+    middle_name VARCHAR NULL,
+    role VARCHAR NOT NULL
+);
