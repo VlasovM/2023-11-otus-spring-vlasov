@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface BookService {
 
-    BookUpdateDto findById(Long id);
+    BookDto findById(Long id);
+
+    BookUpdateDto findByIdByUpdate(Long id);
 
     List<BookDto> findAll();
 

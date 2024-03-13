@@ -5,10 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class GenreDto {
+public class ErrorDto {
 
-    private Long id;
-
-    private String name;
+    private String message;
 
 }

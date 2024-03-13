@@ -43,7 +43,7 @@ public class BookController {
 
     @GetMapping("/edit")
     public String editBook(@RequestParam("id") Long id, Model model) {
-        var bookUpdateDto = bookService.findById(id);
+        var bookUpdateDto = bookService.findByIdByUpdate(id);
         var authors = authorService.findAll();
         var genres = genreService.findAll();
         model.addAttribute("book", bookUpdateDto);
