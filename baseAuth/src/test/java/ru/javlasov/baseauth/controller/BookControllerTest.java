@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.javlasov.baseauth.dto.BookCreateDto;
@@ -14,6 +15,7 @@ import ru.javlasov.baseauth.exceptions.NotFoundException;
 import ru.javlasov.baseauth.model.Author;
 import ru.javlasov.baseauth.model.Book;
 import ru.javlasov.baseauth.model.Genre;
+import ru.javlasov.baseauth.security.SecurityConfig;
 import ru.javlasov.baseauth.services.AuthorService;
 import ru.javlasov.baseauth.services.BookService;
 import ru.javlasov.baseauth.services.GenreService;
@@ -29,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(BookController.class)
+@Import(SecurityConfig.class)
 public class BookControllerTest {
 
     @Autowired
@@ -45,8 +48,6 @@ public class BookControllerTest {
 
     @Test
     @DisplayName("Should get all books")
-    @WithMockUser(username = "user", roles = "USER")
-        //TODO: почему тут не работает без авторизации?
     void shouldGetAllBooks() throws Exception {
         given(mockBookService.findAll()).willReturn(getAllBooks());
         var content = mockMvc.perform(get("/").with(csrf()))
