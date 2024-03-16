@@ -19,6 +19,7 @@ import ru.javlasov.baseauth.security.SecurityConfig;
 import ru.javlasov.baseauth.services.AuthorService;
 import ru.javlasov.baseauth.services.BookService;
 import ru.javlasov.baseauth.services.GenreService;
+import ru.javlasov.baseauth.services.UserService;
 
 import java.util.List;
 
@@ -45,6 +46,9 @@ public class BookControllerTest {
 
     @MockBean
     private GenreService mockGenreService;
+
+    @MockBean
+    private UserService service;
 
     @Test
     @DisplayName("Should get all books")
@@ -137,13 +141,13 @@ public class BookControllerTest {
     }
 
     @Test
-    @DisplayName("Should get 401 (Unauthorized) error code")
+    @DisplayName("Should get 302 (redirection) code")
     void unauthorizedTest() throws Exception {
         given(mockBookService.findByIdByUpdate(1L)).willThrow(new NotFoundException("Not found book with id = %d".formatted(1)));
         mockMvc.perform(get("/edit")
                         .param("id", "1")
                         .with(csrf()))
-                .andExpect(status().isUnauthorized());
+                .andExpect(status().is3xxRedirection());
     }
 
     private List<BookDto> getAllBooks() {

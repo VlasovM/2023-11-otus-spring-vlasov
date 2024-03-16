@@ -31,8 +31,7 @@ CREATE TABLE IF NOT EXISTS comments
 CREATE TABLE IF NOT EXISTS users
 (
     id SERIAL PRIMARY KEY NOT NULL,
-    name VARCHAR NOT NULL,
-    surname VARCHAR NOT NULL,
-    middle_name VARCHAR NULL,
+    username VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
     role VARCHAR NOT NULL
 );
