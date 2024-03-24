@@ -1,4 +1,4 @@
-package ru.javlasov.springwebflux.changelogs;
+package ru.javlasov.springwebflux.mongock;
 
 import com.github.cloudyrock.mongock.ChangeLog;
 import com.github.cloudyrock.mongock.ChangeSet;
@@ -6,11 +6,9 @@ import com.mongodb.client.MongoDatabase;
 import reactor.core.publisher.Mono;
 import ru.javlasov.springwebflux.models.Author;
 import ru.javlasov.springwebflux.models.Book;
-import ru.javlasov.springwebflux.models.Comment;
 import ru.javlasov.springwebflux.models.Genre;
 import ru.javlasov.springwebflux.repositories.AuthorRepository;
 import ru.javlasov.springwebflux.repositories.BookRepository;
-import ru.javlasov.springwebflux.repositories.CommentRepository;
 import ru.javlasov.springwebflux.repositories.GenreRepository;
 
 import java.util.ArrayList;
@@ -47,13 +45,6 @@ public class DatabaseChangelog {
         books.add(bookRepository.save(new Book("Captain's daughter", authors.get(0).block(), genres.get(0).block())));
         books.add(bookRepository.save(new Book("Idiot", authors.get(1).block(), genres.get(0).block())));
         books.add(bookRepository.save(new Book("Demons", authors.get(1).block(), genres.get(0).block())));
-    }
-
-    @ChangeSet(order = "004", id = "initComments", author = "jaVlasov", runAlways = true)
-    public void initComments(CommentRepository commentRepository) {
-        commentRepository.save(new Comment("Wow!", books.get(0).block())).block();
-        commentRepository.save(new Comment("Cool!", books.get(1).block())).block();
-        commentRepository.save(new Comment("Not bad!", books.get(2).block())).block();
     }
 
 }

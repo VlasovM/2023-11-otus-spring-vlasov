@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Library application</title>
+    <title>Books library</title>
     <style type="text/css">
         body {
             padding: 10px;
@@ -24,6 +24,22 @@
             text-align: center;
         }
 
+        .newBook tr td, th {
+            border: 1px solid rgb(160 160 160);
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        .newBook {
+            border-collapse: collapse;
+            border: 2px solid rgb(140 140 140);
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            width: 300px;
+            text-align: center;
+        }
+
         .books thread, tfoot {
             background-color: rgb(228 240 245);
         }
@@ -40,43 +56,58 @@
 <table class="books">
     <thead>
     <tr>
+        <th colspan="6">
+            <a href="create.html" th:href="@{/create}">Добавить новую книгу</a>
+        </th>
+    </tr>
+    <tr>
         <th scope="col">ID</th>
         <th scope="col">Название</th>
         <th scope="col">Автор</th>
         <th scope="col">Жанр</th>
-        <th>-</th>
-        <th>-</th>
+        <th scope="col">-</th>
+        <th scope="col">-</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="book :${books}">
-        <th th:text="${book.id}">1</th>
-        <td th:text="${book.title}">Book</td>
-        <td th:text="${book.author}">Author</td>
-        <td th:text="${book.genre}">Genre</td>
-        <td>
-            <a th:href="@{/edit(id=${book.id})}">
-                <button name="id" value="${book.id}">Изменить</button>
-            </a>
-        </td>
-        <td>
-            <form th:action="@{/delete(id=${book.id})}" method="post">
-                <button name="id" value=${book.id}>Удалить</button>
-            </form>
-        </td>
-    </tr>
     </tbody>
-    <tfoot>
-    <td colspan="6">
-        <form th:action="@{/create}" method="get">
-            <button>Добавить новую книгу</button>
-        </form>
-    </td>
-    </tfoot>
 </table>
-<br>
-<hr>
-<h4>Автор: JaVlasov</h4>
-<h4><a href="https://github.com/VlasovM/2023-11-otus-spring-vlasov">https://github.com/</a></h4>
+
+<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+    $(function () {
+        $.get('/api/v1/book/').done(function (books) {
+            books.forEach(function (book) {
+                $('tbody').append(`
+                    <tr>
+                        <td>${book.id}</td>
+                        <td>${book.title}</td>
+                        <td>${book.author}</td>
+                        <td>${book.genre}</td>
+                        <td>
+                            <button onclick="deleteBook(${book.id})">Удалить</button>
+                        </td>
+                        <td>
+                            <a href="/edit/${book.id}">
+                                <button name="id" value="${book.id}">Изменить</button>
+                            </a>
+                        </td>
+                    </tr>
+                `)
+            });
+        })
+    });
+
+    function deleteBook(id) {
+        fetch("/api/v1/book/" + id, {
+            method: "DELETE"
+        })
+            .then(() => {
+                location.reload();
+            })
+    }
+</script>
+
 </body>
 </html>

@@ -2,29 +2,28 @@ package ru.javlasov.springwebflux.controllers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.javlasov.springwebflux.TestHelper;
-import ru.javlasov.springwebflux.configuration.TestConfiguration;
 import ru.javlasov.springwebflux.controller.BookController;
+import ru.javlasov.springwebflux.dto.AuthorDto;
 import ru.javlasov.springwebflux.dto.BookCreateDto;
 import ru.javlasov.springwebflux.dto.BookDto;
 import ru.javlasov.springwebflux.dto.BookUpdateDto;
+import ru.javlasov.springwebflux.dto.GenreDto;
 import ru.javlasov.springwebflux.services.BookService;
+
+import java.util.List;
 
 import static org.mockito.Mockito.when;
 
 
 @Import(BookService.class)
-@ContextConfiguration(classes = TestConfiguration.class)
 @WebFluxTest(controllers = BookController.class)
 public class BookControllerTest {
 
@@ -34,9 +33,6 @@ public class BookControllerTest {
     @MockBean
     BookController bookController;
 
-    @InjectMocks
-    private TestHelper testHelper;
-
     @Autowired
     private WebTestClient webClient;
 
@@ -44,12 +40,11 @@ public class BookControllerTest {
     @Test
     @DisplayName("Should get book list")
     void shouldGetBookList() {
-        var books = testHelper.getDbBooks();
-
+        var books = getDbBooks();
         Flux<BookDto> bookFlux = Flux.fromIterable(books);
         when(bookService.findAll()).thenReturn(bookFlux);
         webClient.get()
-                .uri("/books")
+                .uri("/api/v1/book/")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(BookDto.class);
@@ -58,10 +53,8 @@ public class BookControllerTest {
     @Test
     @DisplayName("Should create book")
     void shouldCreateBook() {
-
-        var book = new BookCreateDto("Title",  "1", "1");
-
-        webClient.post().uri("/books")
+        var book = getBookCreateDto();
+        webClient.post().uri("/api/v1/book/")
                 .body(Mono.just(book), BookCreateDto.class)
                 .exchange()
                 .expectStatus().isCreated();
@@ -70,10 +63,8 @@ public class BookControllerTest {
     @Test
     @DisplayName("Should update book")
     void shouldUpdateBook() {
-
-        var book = new BookUpdateDto("1","Title_New",  "1", "1");
-
-        webClient.put().uri("/books/{id}","1")
+        var book = getBookUpdateDto();
+        webClient.put().uri("/api/v1/book/{id}", "1")
                 .body(Mono.just(book), BookUpdateDto.class)
                 .exchange()
                 .expectStatus().isOk();
@@ -82,12 +73,26 @@ public class BookControllerTest {
     @Test
     @DisplayName("Should delete book")
     void shouldDeleteBook() {
-		Mono<Void> voidReturn  = Mono.empty();
+        Mono<Void> voidReturn = Mono.empty();
         Mockito.when(bookService.deleteById("1")).thenReturn(voidReturn);
+        webClient.delete().uri("/api/v1/book/{id}", 1)
+                .exchange()
+                .expectStatus().isNoContent();
+    }
 
-        webClient.delete().uri("/books/{id}", 1)
-	        .exchange()
-	        .expectStatus().isNoContent();
+    private List<BookDto> getDbBooks() {
+        GenreDto genreDto = new GenreDto("1", "Novel");
+        AuthorDto authorDto = new AuthorDto("1", "Nikolay Gogol");
+        BookDto bookDto = new BookDto("1", "Nose", authorDto, genreDto);
+        return List.of(bookDto);
+    }
+
+    private BookCreateDto getBookCreateDto() {
+        return new BookCreateDto("Overcoat", "1", "1");
+    }
+
+    private BookUpdateDto getBookUpdateDto() {
+        return new BookUpdateDto("1", "Overcoat", "1","1");
     }
 
 }

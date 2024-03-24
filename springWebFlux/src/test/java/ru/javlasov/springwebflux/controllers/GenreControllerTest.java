@@ -38,7 +38,7 @@ public class GenreControllerTest {
         Flux<GenreDto> genreFlux = Flux.fromIterable(genres);
         when(genreService.findAll()).thenReturn(genreFlux);
         webClient.get()
-                .uri("api/v1/genres")
+                .uri("/api/v1/genres")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(GenreDto.class);

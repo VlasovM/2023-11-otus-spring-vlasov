@@ -34,31 +34,88 @@
 </head>
 <body>
 <h3>Добавление новой книги</h3>
-<form id="create-form" action="create.html" th:action="@{/create}" th:method="post" th:object="${book}">
+<form id="create-form" action="create.html" th:method="post">
     <div class="row">
         <label for="book-title-input">Название:</label>
         <input id="book-title-input" name="title" type="text" th:value="*{title}" value="Новая книга"/>
-        <div class="errors" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Неверное название книги</div>
     </div>
     <div class="row">
-        <label for="book-author-input">Автор:</label>
-        <select id = "book-author-input" name="authorId" type="text" th:value="*{authorId}">
-            <option th:each="author :${authors}" th:value="${author.id}" th:text="${author.fullName}">Имя автора</option>
+        <label for="authorId">Автор:</label>
+        <select id="authorId" name="authorId" type="text">
+            <option>Выбрать автора</option>
         </select>
     </div>
     <div class="row">
-        <label for="book-genre-input">Жанр:</label>
-        <select id = "book-genre-input" name="genreId" type="text" th:value="*{genreId}">
-            <option th:each="genre :${genres}" th:value="${genre.id}" th:text="${genre.name}">Жанр</option>
+        <label for="genreId">Жанр:</label>
+        <select id="genreId" name="genreId" type="text">
+            <option>Выбрать жанр</option>
         </select>
     </div>
 
     <div class="row">
-        <button type="submit">Сохранить</button>
+        <button type="button" onclick="saveBook()">Сохранить</button>
         <a href="homePage.html" th:href="@{/}">
             <button type="button">Отменить</button>
         </a>
     </div>
 </form>
+<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    function saveBook() {
+
+        const newBook = document.getElementById("new-book");
+        const titleInput = document.getElementById("book-title-input")
+        const authorIdInput = document.getElementById("authorId")
+        const genreIdInput = document.getElementById("genreId")
+
+        const book = {
+            title: titleInput.value,
+            authorId: authorIdInput.value,
+            genreId: genreIdInput.value
+        }
+
+        fetch("/api/v1/book/", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(book)
+        })
+            .then(rawResponse => rawResponse.json())
+            .then(json => newBook.innerHTML = JSON.stringify(json, null, 4))
+
+    }
+</script>
+<script>
+    $(function () {
+        $.ajax({
+            url: "/api/v1/author/",
+            type: "GET",
+            dataType: "json",
+            success: function (authors) {
+                $.each(authors, function (i, author) {
+                    $("#authorId").append("<option value='" + author.id + "'>" + author.fullName + "</option>");
+                });
+            }
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $.ajax({
+            url: "/api/v1/genre/",
+            type: "GET",
+            dataType: "json",
+            success: function (genres) {
+                $.each(genres, function (i, genre) {
+                    $("#genreId").append("<option value='" + genre.id + "'>" + genre.name + "</option>");
+                });
+            }
+        });
+    });
+</script>
+<h3>Сохраненная книга:</h3>
+<pre id = "new-book"></pre>
 </body>
 </html>
