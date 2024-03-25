@@ -44,13 +44,13 @@
     </div>
     <div class="row">
         <label for="book-author-input">Автор:</label>
-        <select id = "book-author-input" name="authorId" type="text" th:value="*{authorId}">
+        <select id = "book-author-input" name="authorId" type="text" th:value="*{author.id}">
             <option th:each="author :${authors}" th:value="${author.id}" th:text="${author.fullName}">Имя автора</option>
         </select>
     </div>
     <div class="row">
         <label for="book-genre-input">Жанр:</label>
-        <select id = "book-genre-input" name="genreId" type="text" th:value="*{genreId}">
+        <select id = "book-genre-input" name="genreId" type="text" th:value="*{genre.id}">
             <option th:each="genre :${genres}" th:value="${genre.id}" th:text="${genre.name}">Жанр</option>
         </select>
     </div>

@@ -8,9 +8,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.javlasov.springacl.dto.AuthorDto;
 import ru.javlasov.springacl.dto.BookCreateDto;
 import ru.javlasov.springacl.dto.BookDto;
 import ru.javlasov.springacl.dto.BookUpdateDto;
+import ru.javlasov.springacl.dto.GenreDto;
 import ru.javlasov.springacl.exceptions.NotFoundException;
 import ru.javlasov.springacl.model.Author;
 import ru.javlasov.springacl.model.Book;
@@ -32,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(BookController.class)
-@Import(SecurityConfig.class)
+@Import({SecurityConfig.class})
 public class BookControllerTest {
 
     @Autowired
@@ -80,7 +82,7 @@ public class BookControllerTest {
     @DisplayName("Should redirect to edit view")
     @WithMockUser(username = "author", roles = "AUTHOR")
     void shouldRedirectToEditView() throws Exception {
-        given(mockBookService.findByIdByUpdate(1L)).willReturn(getBookUpdateDtoFromBook());
+        given(mockBookService.findById(1L)).willReturn(getAllBooks().get(0));
         var content = mockMvc.perform(get("/edit")
                         .param("id", "1")
                         .with(csrf()))
@@ -95,7 +97,7 @@ public class BookControllerTest {
     @DisplayName("Attempt to edit book in simple user")
     @WithMockUser(username = "user", roles = "USER")
     void editBookWithSimpleUserTest() throws Exception {
-        given(mockBookService.findByIdByUpdate(1L)).willReturn(getBookUpdateDtoFromBook());
+        given(mockBookService.findById(1L)).willReturn(getAllBooks().get(0));
         mockMvc.perform(get("/edit")
                         .param("id", "1")
                         .with(csrf()))
@@ -145,7 +147,7 @@ public class BookControllerTest {
     @DisplayName("Should find not found entity and get 404 code")
     @WithMockUser(username = "author", roles = "AUTHOR")
     void notFountEntityTest() throws Exception {
-        given(mockBookService.findByIdByUpdate(1L)).willThrow(new NotFoundException("Not found book with id = %d".formatted(1)));
+        given(mockBookService.findById(1L)).willThrow(new NotFoundException("Not found book with id = %d".formatted(1)));
         mockMvc.perform(get("/edit")
                         .param("id", "1")
                         .with(csrf()))
@@ -155,21 +157,29 @@ public class BookControllerTest {
     @Test
     @DisplayName("Should get 404 error code when incorrect book id")
     @WithMockUser(username = "author", roles = "AUTHOR")
-    void unauthorizedTest() throws Exception {
-        given(mockBookService.findByIdByUpdate(1L)).willThrow(new NotFoundException("Not found book with id = %d".formatted(1)));
+    void notFountUpdateEntityTest() throws Exception {
+        given(mockBookService.findById(1L)).willThrow(new NotFoundException("Not found book with id = %d".formatted(1)));
         mockMvc.perform(get("/edit")
                         .param("id", "1")
                         .with(csrf()))
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    @DisplayName("Test request without authorization")
+    void requestWithoutAuthorizationTest() throws Exception {
+        given(mockBookService.findAll()).willReturn(getAllBooks());
+        mockMvc.perform(get("/").with(csrf()))
+                .andExpect(status().is3xxRedirection());
+    }
+
     private List<BookDto> getAllBooks() {
-        var bookFirst = new Book("Три товарища", getAllAuthors().get(0), getAllGenres().get(0));
-        var bookSecond = new Book("1984", getAllAuthors().get(1), getAllGenres().get(0));
-        var bookDtoFirst = new BookDto(bookFirst.getId(), bookFirst.getTitle(), bookFirst.getAuthor().getFullName(),
-                bookFirst.getGenre().getName());
-        var bookDtoSecond = new BookDto(bookSecond.getId(), bookSecond.getTitle(), bookSecond.getAuthor().getFullName(),
-                bookSecond.getGenre().getName());
+        AuthorDto authorDtoFirst = new AuthorDto(getAllAuthors().get(0).getId(), getAllAuthors().get(0).getFullName());
+        AuthorDto authorDtoSecond = new AuthorDto(getAllAuthors().get(1).getId(), getAllAuthors().get(1).getFullName());
+        GenreDto genreDtoFirst = new GenreDto(getAllGenres().get(0).getId(), getAllGenres().get(0).getName());
+        GenreDto genreDtoSecond = new GenreDto(getAllGenres().get(1).getId(), getAllGenres().get(1).getName());
+        BookDto bookDtoFirst = new BookDto(1L, "Три товарища", authorDtoFirst, genreDtoFirst);
+        BookDto bookDtoSecond = new BookDto(2L, "1984", authorDtoSecond, genreDtoSecond);
         return List.of(bookDtoFirst, bookDtoSecond);
     }
 

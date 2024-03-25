@@ -11,6 +11,8 @@ public interface GenreMapper {
 
     GenreDto entityToDto(Genre genre);
 
+    Genre dtoToModel(GenreDto genreDto);
+
     List<GenreDto> entityToDto(List<Genre> genres);
 
 }

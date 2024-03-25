@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.javlasov.springacl.dto.BookCreateDto;
 import ru.javlasov.springacl.dto.BookDto;
-import ru.javlasov.springacl.dto.BookUpdateDto;
 import ru.javlasov.springacl.services.AuthorService;
 import ru.javlasov.springacl.services.BookService;
 import ru.javlasov.springacl.services.GenreService;
@@ -48,17 +47,17 @@ public class BookController {
 
     @GetMapping("/edit")
     public String editBook(@RequestParam("id") Long id, Model model) {
-        var bookUpdateDto = bookService.findByIdByUpdate(id);
+        var bookDto = bookService.findById(id);
         var authors = authorService.findAll();
         var genres = genreService.findAll();
-        model.addAttribute("book", bookUpdateDto);
+        model.addAttribute("book", bookDto);
         model.addAttribute("authors", authors);
         model.addAttribute("genres", genres);
         return "edit";
     }
 
     @PostMapping("/edit")
-    public String editBook(@Valid @ModelAttribute("book") BookUpdateDto book,
+    public String editBook(@Valid @ModelAttribute("book") BookDto book,
                            BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("id", book.getId());

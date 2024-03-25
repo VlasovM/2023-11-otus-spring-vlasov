@@ -21,11 +21,13 @@ public class UserServiceImpl implements UserService {
         var user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new NotFoundException("Not found user with id = %s".formatted(username)));
         log.info("Authorization in the system: " + user.getUsername() + " - " + user.getRole());
+        StringBuilder roles = new StringBuilder();
+        user.getRole().forEach(role -> roles.append(" ").append(role.getRole()));
         return User
                 .builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
-                .roles(user.getRole().getRole())
+                .roles(roles.toString())
                 .build();
     }
 

@@ -6,11 +6,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,8 +29,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role", referencedColumnName = "id")
-    private Role role;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private Set<Role> role;
 
 }

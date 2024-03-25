@@ -19,7 +19,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public List<AuthorDto> findAll() {
-        return mapper.entityToDto(authorRepository.findAll());
+        return mapper.entityToDtoList(authorRepository.findAll());
     }
 
 }

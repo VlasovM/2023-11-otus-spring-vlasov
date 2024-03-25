@@ -11,6 +11,8 @@ public interface AuthorMapper {
 
     AuthorDto entityToDto(Author author);
 
-    List<AuthorDto> entityToDto(List<Author> authors);
+    Author dtoToModel(AuthorDto authorDto);
+
+    List<AuthorDto> entityToDtoList(List<Author> authors);
 
 }

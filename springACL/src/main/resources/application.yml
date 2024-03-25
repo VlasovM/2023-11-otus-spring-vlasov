@@ -5,8 +5,6 @@ spring:
     username: postgres # default
     password: password # default
   jpa:
-    hibernate:
-      ddl-auto: none
     show-sql: false
     properties:
       hibernate:
