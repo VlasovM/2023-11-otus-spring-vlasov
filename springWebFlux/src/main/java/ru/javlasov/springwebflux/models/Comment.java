@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@Document("comment")
+@Document("comments")
 public class Comment {
 
     @Id
@@ -16,7 +16,7 @@ public class Comment {
 
     private String text;
 
-    @DBRef
+    @DBRef(lazy = true)
     private Book book;
 
     public Comment(String text, Book book) {

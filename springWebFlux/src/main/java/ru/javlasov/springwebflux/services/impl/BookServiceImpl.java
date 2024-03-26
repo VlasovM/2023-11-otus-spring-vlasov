@@ -28,13 +28,6 @@ public class BookServiceImpl implements BookService {
     private final BookMapper mapper;
 
     @Override
-    public Mono<BookDto> findById(String id) {
-        return bookRepository.findById(id)
-                .switchIfEmpty(Mono.error(new NotFoundException("")))
-                .map(mapper::entityToDtoView);
-    }
-
-    @Override
     public Flux<BookDto> findAll() {
         return bookRepository.findAll().map(mapper::entityToDtoView);
     }
@@ -54,7 +47,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public Mono<BookDto> update(BookUpdateDto bookUpdateDto) {
         return Mono.zip(
-                        authorRepository.findById(bookUpdateDto.getAuthorId())
+                        authorRepository.findById(bookUpdateDto.getId())
                                 .switchIfEmpty(Mono.error(new NotFoundException(""))),
                         genreRepository.findById(bookUpdateDto.getGenreId())
                                 .switchIfEmpty(Mono.error(new NotFoundException(""))))

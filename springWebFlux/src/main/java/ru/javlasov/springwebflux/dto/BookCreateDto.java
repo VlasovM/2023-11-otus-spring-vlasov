@@ -1,7 +1,7 @@
 package ru.javlasov.springwebflux.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,10 +14,10 @@ public class BookCreateDto {
     @Size(min = 2, max = 30, message = "Допустимая длина книги от 2 до 20 символов")
     private String title;
 
-    @NotNull
+    @NotEmpty
     private String authorId;
 
-    @NotNull
+    @NotEmpty
     private String genreId;
 
 }

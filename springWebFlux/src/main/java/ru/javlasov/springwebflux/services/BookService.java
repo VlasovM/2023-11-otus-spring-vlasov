@@ -8,8 +8,6 @@ import ru.javlasov.springwebflux.dto.BookUpdateDto;
 
 public interface BookService {
 
-    Mono<BookDto> findById(String id);
-
     Flux<BookDto> findAll();
 
     Mono<BookDto> create(BookCreateDto dto);

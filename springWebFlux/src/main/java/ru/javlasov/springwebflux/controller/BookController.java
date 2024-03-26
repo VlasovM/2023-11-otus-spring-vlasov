@@ -40,8 +40,8 @@ public class BookController {
 
     @DeleteMapping("book/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable(name = "id") String id) {
-        bookService.deleteById(id);
+    public Mono<Void> delete(@PathVariable(name = "id") String id) {
+        return bookService.deleteById(id);
     }
 
     @PostMapping("book/")

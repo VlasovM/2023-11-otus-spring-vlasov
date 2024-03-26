@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
+import ru.javlasov.springwebflux.TestConfig;
 import ru.javlasov.springwebflux.controller.AuthorController;
 import ru.javlasov.springwebflux.dto.AuthorDto;
 import ru.javlasov.springwebflux.services.AuthorService;
@@ -18,6 +20,7 @@ import static org.mockito.Mockito.when;
 
 @Import(AuthorService.class)
 @WebFluxTest(controllers = AuthorController.class)
+@ContextConfiguration(classes = TestConfig.class)
 class AuthorControllerTest {
 
     @MockBean

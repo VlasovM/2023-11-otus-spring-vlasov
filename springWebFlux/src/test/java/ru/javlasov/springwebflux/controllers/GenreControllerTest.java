@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
+import ru.javlasov.springwebflux.TestConfig;
 import ru.javlasov.springwebflux.controller.GenreController;
 import ru.javlasov.springwebflux.dto.GenreDto;
 import ru.javlasov.springwebflux.services.GenreService;
@@ -18,6 +20,7 @@ import static org.mockito.Mockito.when;
 
 @Import(GenreService.class)
 @WebFluxTest(controllers = GenreController.class)
+@ContextConfiguration(classes = TestConfig.class)
 public class GenreControllerTest {
 
     @MockBean

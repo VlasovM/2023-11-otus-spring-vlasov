@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import ru.javlasov.springwebflux.TestConfig;
 import ru.javlasov.springwebflux.controller.BookController;
 import ru.javlasov.springwebflux.dto.AuthorDto;
 import ru.javlasov.springwebflux.dto.BookCreateDto;
@@ -25,6 +27,7 @@ import static org.mockito.Mockito.when;
 
 @Import(BookService.class)
 @WebFluxTest(controllers = BookController.class)
+@ContextConfiguration(classes = TestConfig.class)
 public class BookControllerTest {
 
     @MockBean
