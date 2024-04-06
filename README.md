@@ -15,6 +15,8 @@
 * [Использовать MongoDB и spring-data для хранения информации о книгах (Spring Data для подключения к нереляционным БД )](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springMongoDB)
 * [Приложение для хранения книг с использованием Spring Thymeleaf](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springThymeleaf)
 * [Приложение для хранения книг с использованием AJAX](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springAjax)
+* [Приложение для хранения книг с базовой аутентификацией](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/baseAuth)
+* [Приложение для хранения книг с WebFlux](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springWebFlux)
 
 ### Студент: 
 Власов Максим Александрович | https://t.me/JaVlasov
@@ -37,6 +39,7 @@ Each project folder has its own **ReadMe** file, which contains a description of
 * [Use MongoDB and spring-data to store information about books (Spring Data to connect to non-relational databases)](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springMongoDB)
 * [Application for storing books with Spring Thymeleaf](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springThymeleaf)
 * [Application for storing books with AJAX](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springAjax)
+* [Application for storing books with WebFlux](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springWebFlux)
 
 ### Student: 
 Vlasov Maxim Aleksandrovich | https://t.me/JaVlasov
