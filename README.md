@@ -17,6 +17,7 @@
 * [Приложение для хранения книг с использованием AJAX](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springAjax)
 * [Приложение для хранения книг с базовой аутентификацией](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/baseAuth)
 * [Приложение для хранения книг с WebFlux](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springWebFlux)
+* [Приложение для хранения книг с разделение пользователей по ролям](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springAuthentification)
 
 ### Студент: 
 Власов Максим Александрович | https://t.me/JaVlasov
@@ -39,7 +40,9 @@ Each project folder has its own **ReadMe** file, which contains a description of
 * [Use MongoDB and spring-data to store information about books (Spring Data to connect to non-relational databases)](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springMongoDB)
 * [Application for storing books with Spring Thymeleaf](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springThymeleaf)
 * [Application for storing books with AJAX](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springAjax)
+* [Application for storing books with authentication](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/baseAuth)
 * [Application for storing books with WebFlux](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springWebFlux)
+* [Application for storing books with authorization](https://github.com/VlasovM/2023-11-otus-spring-vlasov/tree/master/springAuthentification)
 
 ### Student: 
 Vlasov Maxim Aleksandrovich | https://t.me/JaVlasov
