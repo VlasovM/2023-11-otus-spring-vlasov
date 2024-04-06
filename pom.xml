@@ -19,6 +19,7 @@
         <module>springAjax</module>
         <module>baseAuth</module>
         <module>springWebFlux</module>
+        <module>springAuthentication</module>
     </modules>
     <properties>
         <java.version>17</java.version>
